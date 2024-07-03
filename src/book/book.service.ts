@@ -15,4 +15,8 @@ export class BookService {
     const offset = (page - 1) * pageSize;
     return this.bookRepository.findAll({ limit: pageSize, offset: offset });
   }
+
+  async findOne(id: number): Promise<Book> {
+    return this.bookRepository.findOne({ id: id });
+  }
 }
