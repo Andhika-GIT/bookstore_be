@@ -9,7 +9,7 @@ export class BookFactory extends Factory<Book> {
     return {
       title: faker.lorem.words(3),
       imgURL:
-        'https://cdn.discordapp.com/attachments/788618872953503745/1257597601612697670/stay-with-me.jpg?ex=6684fc89&is=6683ab09&hm=45c3faf501db131658dc7f4f3709177310b0d4b41c22f36890a90fd490da1b0e&',
+        'https://images.unsplash.com/photo-1537495329792-41ae41ad3bf0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       author: faker.person.fullName(),
       publisher: faker.company.name(),
       description: faker.lorem.paragraph(),
