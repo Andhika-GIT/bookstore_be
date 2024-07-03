@@ -3,6 +3,7 @@ import { Book } from './book/entities/book.entity';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { Migrator } from '@mikro-orm/migrations';
+import { SeedManager } from '@mikro-orm/seeder';
 
 const config: Options = {
   entities: [Book],
@@ -20,7 +21,7 @@ const config: Options = {
   migrations: {
     path: './src/migrations',
   },
-  extensions: [Migrator],
+  extensions: [Migrator, SeedManager],
 };
 
 export default config;
