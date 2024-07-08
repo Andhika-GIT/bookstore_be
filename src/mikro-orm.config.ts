@@ -4,9 +4,10 @@ import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { Migrator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
+import { User } from './user/entities/user.entity';
 
 const config: Options = {
-  entities: [Book],
+  entities: [Book, User],
   dbName: 'bookstore',
   user: 'postgres',
   password: 'postgres',
