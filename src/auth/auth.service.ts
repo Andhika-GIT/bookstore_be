@@ -2,11 +2,10 @@ import { CreateUserDto } from '@/user/dto/create-user';
 import { BadRequestException } from '@nestjs/common';
 import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
-import { promisify } from 'util';
 import { JwtService } from '@nestjs/jwt';
 import { setCookie } from '@/utils/cookie.util';
 import { Response } from 'express';
-import { SignInUserDto } from './dto/signIn-user';
+// import { SignInUserDto } from './dto/signIn-user';
 import { hashPassword } from '@/utils/hash-password.util';
 
 @Injectable()
@@ -15,10 +14,6 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
-
-  async validateUser(user: SignInUserDto, response: Response) {
-    const currentUser = await this.userService.findUser(user?.username);
-  }
 
   async signUp(user: CreateUserDto, response: Response) {
     const currentUser = await this.userService.findByEmail(user?.email);
