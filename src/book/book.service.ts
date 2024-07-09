@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/core';
 import { Book } from './entities/book.entity';
+import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 
 @Injectable()
 export class BookService {
@@ -17,6 +18,6 @@ export class BookService {
   }
 
   async findOne(id: number): Promise<Book> {
-    return this.bookRepository.findOneOrFail({ id: id });
+    return handleFindOrFail(this.bookRepository, { id });
   }
 }
