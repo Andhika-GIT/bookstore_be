@@ -21,6 +21,8 @@ const config: Options = {
   },
   migrations: {
     path: './src/migrations',
+    pathTs: './src/migrations',
+    glob: '!(*.d).{js,ts}',
   },
   extensions: [Migrator, SeedManager],
 };

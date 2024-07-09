@@ -1,12 +1,14 @@
-import { CreateUserDto } from '@/user/dto/create-user';
+import { CreateUserDto } from '@/auth/dto/create-user';
 import { BadRequestException } from '@nestjs/common';
 import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { setCookie } from '@/utils/cookie.util';
+import { setCookie } from '@/common/utils/cookie.util';
 import { Response } from 'express';
-// import { SignInUserDto } from './dto/signIn-user';
-import { hashPassword } from '@/utils/hash-password.util';
+import { hashPassword, verifyPassword } from '@/common/utils/password.util';
+import { SignInUserDto } from './dto/signIn-user';
+import { User } from '@/user/entities/user.entity';
+import { sendResponse } from '@/common/utils/response.util';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +16,25 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
+
+  async validateUser(user: SignInUserDto): Promise<User> {
+    const findUser = await this.userService.findUser(user?.username);
+
+    if (!findUser) {
+      throw new BadRequestException('invalid credential');
+    }
+
+    const passwordIncorrect = await verifyPassword(
+      user?.password,
+      findUser?.password,
+    );
+
+    if (passwordIncorrect) {
+      throw new BadRequestException('invalid credential');
+    }
+
+    return findUser;
+  }
 
   async signUp(user: CreateUserDto, response: Response) {
     const currentUser = await this.userService.findByEmail(user?.email);
@@ -32,5 +53,13 @@ export class AuthService {
     await this.userService.create(newUser);
 
     setCookie(response, 'jwt', this.jwtService.sign({ email: user.email }));
+
+    return sendResponse(response, 200, 'sucessfully sign up');
+  }
+
+  async signIn(user: User, response: Response) {
+    setCookie(response, 'jwt', this.jwtService.sign({ email: user.email }));
+
+    return sendResponse(response, 200, 'sucessfully sign up');
   }
 }

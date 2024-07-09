@@ -28,4 +28,14 @@ export class Book {
 
   @Property()
   publication_date!: string;
+
+  @Property({ defaultRaw: 'now()', nullable: true })
+  created_at: Date;
+
+  @Property({
+    defaultRaw: 'now()',
+    onUpdate: () => new Date(),
+    nullable: true,
+  })
+  updated_at: Date;
 }

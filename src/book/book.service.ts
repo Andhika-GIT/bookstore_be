@@ -17,6 +17,6 @@ export class BookService {
   }
 
   async findOne(id: number): Promise<Book> {
-    return this.bookRepository.findOne({ id: id });
+    return this.bookRepository.findOneOrFail({ id: id });
   }
 }

@@ -1,0 +1,245 @@
+Opening in existing browser session.
+[14001:14001:0100/000000.263699:ERROR:zygote_linux.cc(673)] write: Broken pipe (32)
+The disableGPU setting is set to undefined
+Not disabling GPU
+(node:41453) Warning: Accessing non-existent property 'cat' of module exports inside circular dependency
+(Use `postman --trace-warnings ...` to show where the warning was created)
+(node:41453) Warning: Accessing non-existent property 'cd' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'chmod' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'cp' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'dirs' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'pushd' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'popd' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'echo' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'tempdir' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'pwd' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'exec' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'ls' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'find' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'grep' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'head' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'ln' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'mkdir' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'rm' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'mv' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'sed' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'set' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'sort' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'tail' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'test' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'to' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'toEnd' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'touch' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'uniq' of module exports inside circular dependency
+(node:41453) Warning: Accessing non-existent property 'which' of module exports inside circular dependency
+Main: Starting cleanup of stale files
+Main: Cleanup of stale files completed
+Main~createDefaultWorkingDir - Default working dir creation already attempted
+1720495924622 main info "Booting Postman 11.2.0, linux-5.15.0-113-generic on x64"
+1720495924624 main info "EventBus~initialize - Success"
+1720495924710 main info "Proxy configuration has not been setup"
+1720495924711 main info "CloudProxyManager~init - Success"
+1720495924768 main info "performShellDataMigration: Migration has already been done. Bailing out"
+1720495924779 main info "UpdateHandler~init - Success"
+1720495924781 main info "LeaderSelection: Initialized successfully"
+1720495924782 main info "VersionDependencyService: Initialized successfully"
+1720495924935 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1720495924949 main info "GPU detected VID 32902 DID 39544 ACTIVE true"
+1720495924950 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1720495924950 main info "newAccountRegionPreferenceService~getToggleMenuTemplate - Using preference:","useUSRegion"
+1720495925277 main info "shellController~init: Success"
+1720495925280 main info "shellMeta~init: Success"
+1720495925280 main info "partitionMigrationService: State of V7 partition:"
+1720495925281 main info "partitionMigrationService: V7 partitions",[]
+1720495925281 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no partition with scratchpad namespace"
+1720495925281 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no transit partition which could have been used for scratchpad"
+1720495925281 main info "partitionMigrationService~init: Success"
+1720495925287 main info "partitionMigrationService~runV8PartitionsIntegrity: Two way migration~ removing the following partitions from v8",[]
+1720495925290 main info "userPartitionService~getRecentV8UserPartition: recent v8 user context partition ","f630be31-7b53-470f-8e17-d7bdb8441f6b"
+1720495925290 main info "userPartitionService~_rectifyTheActivePartitionOfApplication: Setting the active partition to ","f630be31-7b53-470f-8e17-d7bdb8441f6b"
+1720495925462 main info "userPartitionService~init: Success"
+1720495925645 main info "userPartitionService: State of v8 partition system:"
+1720495925651 main info "shell~init~getPartitionToLoad: loading active partition"
+1720495925654 main info "userPartitionService: List of partitions:",[{"partitionId":"f630be31-7b53-470f-8e17-d7bdb8441f6b","namespace":"users","userId":"18447102","teamId":"0","lastUpdated":"2024-05-15T04:15:49.711Z"},{"partitionId":"81c3ad48-a3f8-454b-a75a-81e86c516ceb","namespace":"scratchPad","userId":0,"teamId":0,"isDirty":false}]
+1720495925654 main info "userPartitionService: users global meta:",{}
+1720495925659 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: us"
+1720495929226 main info "RuntimeIPCAgent~started: Success"
+1720495931075 main info "Main~getRemoteInitPath:: "
+1720495931582 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
+IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+1720495931628 main info "windowManager: First requester booted successfully."
+1720495931628 main info "windowManager~restoreWindows: Restoring requester windows"
+1720495931629 main info "Main~AppEvents - Received booted event for process requester.Version 11.2.34 UI Version: 11.2.34-ui-240627-0757 Desktop Platform Version: 11.2.0"
+1720495931751 main info "Main~getRemoteInitPath:: "
+1720495932315 main info "Main~getPlatformLaunchPerfMetrics"
+1720495932588 main info "INTERCEPTOR CONNECTIVITY: Attempting to start websocket server on port 15611"
+1720495933777 main info "Main - model-events~user - (user, bootstrapUser) received"
+1720495933777 main info "model-events~user - bootstrapUser received"
+1720495942353 main info "UpdateHandler~app-update-events - Received event",{"name":"updateElectron","namespace":"appUpdate","data":{"channel":"stable","version":"11.2.0","downloadVersion":"11.3.0","appId":"62f12824-1339-4ee2-8f93-8d20a80574ad","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Postman/11.2.0 Electron/20.3.11 Safari/537.36","platform":"LINUX","arch":"64","downloadURL":"https://dl.pstmn.io/download/version/11.3.0/linux_64","updateServerDomain":"https://dl.pstmn.io/","additionalParamsString":"installationId=62f12824-1339-4ee2-8f93-8d20a80574ad&userId=18447102&syncEnabled=true&teamPlan=&teamId=0","userId":"18447102"}}
+1720495942354 main info "LinuxUpdater~downloadUpdate - UpdateInfo received",{"channel":"stable","version":"11.2.0","downloadVersion":"11.3.0","appId":"62f12824-1339-4ee2-8f93-8d20a80574ad","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Postman/11.2.0 Electron/20.3.11 Safari/537.36","platform":"LINUX","arch":"64","downloadURL":"https://dl.pstmn.io/download/version/11.3.0/linux_64","updateServerDomain":"https://dl.pstmn.io/","additionalParamsString":"installationId=62f12824-1339-4ee2-8f93-8d20a80574ad&userId=18447102&syncEnabled=true&teamPlan=&teamId=0","userId":"18447102"}
+1720495960660 main info "LinuxAutoUpdater~Extraction completed",{"packageName":"Postman","eID":"Postman-1720495942354","downloadURL":"https://dl.pstmn.io/download/version/11.3.0/linux_64","downloadDirectory":"/opt/Postman","downloadInfo":{"status":"DOWNLOAD_COMPLETED","error":null,"downloadDirectory":"/opt/Postman"},"extractInfo":{"status":"EXTRACTION_SUCCESSFUL","error":null,"extractDirectory":"/opt/Postman","standardOutput":"","standardError":""}}
+1720495960660 main info "@postman/app-updater: Update updateDownloaded","","Postman 11.3.0","","https://dl.pstmn.io/download/version/11.3.0/linux_64"
+1720495960661 main info "UpdateHandler~app-update-events - Received event",{"name":"electronAppUpdateDownloaded","namespace":"appUpdate","data":{"releaseName":"Postman 11.3.0","notes":"","date":"","URL":"https://dl.pstmn.io/download/version/11.3.0/linux_64"}}
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'unmaximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'maximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'unmaximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'maximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'unmaximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'maximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'unmaximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'maximize', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
