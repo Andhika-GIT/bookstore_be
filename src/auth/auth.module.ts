@@ -9,7 +9,7 @@ import { LocalStrategy } from './strategies/local.strategy';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: 'SECRET_KEY',
+      secret: process.env.JWT_SECRET_KEY,
       signOptions: {
         expiresIn: '3d',
       },

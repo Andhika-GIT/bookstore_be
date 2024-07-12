@@ -5,10 +5,21 @@ import { BookModule } from './book/book.module';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 import config from './mikro-orm.config';
 
 @Module({
-  imports: [MikroOrmModule.forRoot(config), BookModule, UserModule, AuthModule],
+  imports: [
+    MikroOrmModule.forRoot(config),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    ,
+    BookModule,
+    UserModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
