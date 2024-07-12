@@ -1,10 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { NotFoundExceptionFilter } from './common/exceptions/not-found-exceptions.filter';
+import {
+  HttpExceptionFilter,
+  NotFoundExceptionFilter,
+} from './common/exceptions';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalFilters(new NotFoundExceptionFilter());
+  app.useGlobalFilters(
+    new NotFoundExceptionFilter(),
+    new HttpExceptionFilter(),
+  );
+  app.use(cookieParser());
   app.enableCors({
     allowedHeaders: ['content-type'],
     origin: 'http://localhost:3000',
