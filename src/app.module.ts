@@ -15,7 +15,6 @@ import config from './mikro-orm.config';
       envFilePath: '.env',
       isGlobal: true,
     }),
-    ,
     BookModule,
     UserModule,
     AuthModule,
