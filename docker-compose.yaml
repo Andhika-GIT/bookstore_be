@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5432:5432'
+  nest:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=postgres
+      - DB_PORT=${DB_PORT}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SEEDER_PATH=${SEEDER_PATH}
+      - SEEDER_PATH_TS=${SEEDER_PATH_TS}
+      - MIGRATION_PATH=${MIGRATION_PATH}
+      - MIGRATION_PATH_TS=${MIGRATION_PATH_TS}
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
