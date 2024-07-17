@@ -1,16 +1,15 @@
 import { Options } from '@mikro-orm/core';
-import { Book } from './book/entities/book.entity';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { Migrator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
-import { User } from './user/entities/user.entity';
 import { ConfigService } from '@nestjs/config';
+import { entities } from './entities';
 
 const configService = new ConfigService();
 
 const config: Options = {
-  entities: [Book, User],
+  entities: entities,
   dbName: configService.get<string>('DB_NAME', 'bookstore'),
   user: configService.get<string>('DB_USER', 'postgres'),
   password: configService.get<string>('DB_PASSWORD', 'postgres'),

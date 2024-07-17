@@ -25,6 +25,7 @@ services:
       - SEEDER_PATH_TS=${SEEDER_PATH_TS}
       - MIGRATION_PATH=${MIGRATION_PATH}
       - MIGRATION_PATH_TS=${MIGRATION_PATH_TS}
+      - NODE_ENV=production
     depends_on:
       - postgres
     ports:
