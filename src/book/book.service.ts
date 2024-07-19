@@ -33,9 +33,7 @@ export class BookService {
       let imageURL = '';
 
       if (file) {
-        console.log(file);
         const publicId = await this.cloudinaryService.uploadImage(file);
-        console.log(publicId);
 
         this.cloudinaryService.generateOptimizedUrl(publicId);
         const transformedUrl =

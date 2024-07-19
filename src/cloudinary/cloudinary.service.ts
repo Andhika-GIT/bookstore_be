@@ -5,7 +5,6 @@ import { Express } from 'express';
 @Injectable()
 export class CloudinaryService {
   constructor(private readonly configService: ConfigService) {
-    console.log(this.configService.get('CLOUDINARY_CLOUD_NAME'));
     cloudinary.config({
       cloud_name: this.configService.get('CLOUDINARY_CLOUD_NAME'),
       api_key: this.configService.get('CLOUDINARY_API_KEY'),
@@ -14,7 +13,6 @@ export class CloudinaryService {
   }
 
   async uploadImage(file: Express.Multer.File): Promise<string> {
-    console.log(file);
     try {
       // Using Promises with a callback for stream-based upload
       const result = await new Promise<any>((resolve, reject) => {
@@ -37,7 +35,6 @@ export class CloudinaryService {
 
       return result.public_id;
     } catch (e) {
-      console.log(e);
       throw new Error(e);
     }
   }

@@ -42,6 +42,10 @@ export class BookController {
     @UploadedFile() file?: Express.Multer.File,
   ) {
     try {
+      if (!file) {
+        // File is required but not provided
+        return sendResponse(res, 400, 'Image file is required.');
+      }
       await this.bookService.createBook(newBookData, file);
 
       sendResponse(res, 201, 'Successfully created book');
