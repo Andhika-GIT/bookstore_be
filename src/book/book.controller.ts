@@ -1,6 +1,22 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Query,
+  UploadedFile,
+  Post,
+  Res,
+  ValidationPipe,
+  UsePipes,
+} from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './entities/book.entity';
+import { Response } from 'express';
+import { CreateBookDto } from './dto/create-book';
+import { sendResponse } from '@/common/utils/response.util';
+import { UseFileInterceptor } from '@/interceptors/file.interceptor';
 
 @Controller('book')
 export class BookController {
@@ -15,5 +31,22 @@ export class BookController {
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return this.bookService.findOne(id);
+  }
+
+  @UseFileInterceptor('img_url') // Custom decorator for file upload with correct key
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+  @Post()
+  async createBook(
+    @Res() res: Response,
+    @Body() newBookData: CreateBookDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    try {
+      await this.bookService.createBook(newBookData, file);
+
+      sendResponse(res, 201, 'Successfully created book');
+    } catch (e) {
+      sendResponse(res, 500, e.message);
+    }
   }
 }

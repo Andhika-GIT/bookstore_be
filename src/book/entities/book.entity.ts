@@ -3,13 +3,13 @@ import { PrimaryKey, Entity, Property } from '@mikro-orm/core';
 @Entity()
 export class Book {
   @PrimaryKey()
-  id!: number;
+  id: number;
 
   @Property()
   title!: string;
 
   @Property()
-  imgURL!: string;
+  img_url!: string;
 
   @Property()
   author!: string;
@@ -30,14 +30,14 @@ export class Book {
   publication_date!: string;
 
   @Property({ defaultRaw: 'now()', nullable: true })
-  created_at: Date;
+  created_at: Date = new Date();
 
   @Property({
     defaultRaw: 'now()',
     onUpdate: () => new Date(),
     nullable: true,
   })
-  updated_at: Date;
+  updated_at: Date = new Date();
 
   @Property({ type: 'numeric' })
   quantity!: number;

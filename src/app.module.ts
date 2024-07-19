@@ -6,6 +6,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import config from './mikro-orm.config';
 
 @Module({
@@ -18,6 +19,7 @@ import config from './mikro-orm.config';
     BookModule,
     UserModule,
     AuthModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

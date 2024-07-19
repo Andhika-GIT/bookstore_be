@@ -32,6 +32,6 @@ export class SerializeInterceptor implements NestInterceptor {
 }
 
 // create custom decorator to simplify useInterceptors decorator in the controller
-export const Serialize = (dto: ClassConstructor) => {
+export const UseSerializeInterceptor = (dto: ClassConstructor) => {
   return UseInterceptors(new SerializeInterceptor(dto));
 };

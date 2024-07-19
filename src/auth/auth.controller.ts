@@ -14,7 +14,7 @@ import { JwtGuard } from './guards/jwt.guard';
 import { Response } from 'express';
 import { User } from '@/user/entities/user.entity';
 import { CreateUserDto } from './dto/create-user';
-import { Serialize } from '@/interceptors/serialize.interceptor';
+import { UseSerializeInterceptor } from '@/interceptors/serialize.interceptor';
 import { UserResponseDto } from './dto/userResponse-user';
 
 @Controller('auth')
@@ -32,7 +32,7 @@ export class AuthController {
     return this.authService.signUp(body, res);
   }
 
-  @Serialize(UserResponseDto)
+  @UseSerializeInterceptor(UserResponseDto)
   @Get('my-info')
   @UseGuards(JwtGuard)
   getMyInfo(@Request() req: { user: User }) {

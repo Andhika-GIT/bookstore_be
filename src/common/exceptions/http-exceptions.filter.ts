@@ -1,4 +1,3 @@
-// exceptions/http-exception.filter.ts
 import {
   ExceptionFilter,
   Catch,
@@ -14,7 +13,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response: Response = ctx.getResponse();
     const status = exception.getStatus();
-    const message = exception.message;
+    const exceptionResponse = exception.getResponse();
+
+    let message = exception.message;
+
+    // Check if the exception response contains validation errors
+    if (typeof exceptionResponse === 'object' && exceptionResponse['message']) {
+      message = exceptionResponse['message'];
+    }
 
     sendResponse(response, status, message);
   }

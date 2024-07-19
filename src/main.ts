@@ -5,6 +5,7 @@ import {
   NotFoundExceptionFilter,
 } from './common/exceptions';
 import * as cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +19,16 @@ async function bootstrap() {
     origin: 'http://localhost:3000',
     credentials: true,
   });
+
+  // Apply the global validation pipe
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      errorHttpStatusCode: 422, // Use 422 Unprocessable Entity for validation errors
+    }),
+  );
   await app.listen(3000);
 }
 bootstrap();

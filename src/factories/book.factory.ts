@@ -8,7 +8,7 @@ export class BookFactory extends Factory<Book> {
   definition(): Partial<Book> {
     return {
       title: faker.lorem.words(3),
-      imgURL:
+      img_url:
         'https://images.unsplash.com/photo-1537495329792-41ae41ad3bf0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       author: faker.person.fullName(),
       publisher: faker.company.name(),
@@ -16,6 +16,7 @@ export class BookFactory extends Factory<Book> {
       rating: faker.datatype.number({ min: 1, max: 5 }).toString(),
       total_page: faker.datatype.number({ min: 100, max: 500 }),
       publication_date: faker.date.past().toISOString().split('T')[0],
+      quantity: faker.datatype.number({ min: 1, max: 20 }),
     };
   }
 }

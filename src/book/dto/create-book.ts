@@ -1,13 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateBookDto {
   @IsNotEmpty()
   @IsString()
   title: string;
-
-  @IsNotEmpty()
-  @IsString()
-  imgURL: string;
 
   @IsNotEmpty()
   @IsString()
@@ -26,10 +23,16 @@ export class CreateBookDto {
   rating: string;
 
   @IsNotEmpty()
+  @Type(() => Number)
   @IsNumber()
   total_page: number;
 
   @IsNotEmpty()
   @IsString()
   publication_date: string;
+
+  @IsNotEmpty()
+  @Type(() => Number)
+  @IsNumber()
+  quantity: number;
 }
