@@ -71,12 +71,14 @@
         },
         "total_page": {
           "name": "total_page",
-          "type": "int",
+          "type": "numeric(10,0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "integer"
+          "precision": 10,
+          "scale": 0,
+          "mappedType": "decimal"
         },
         "publication_date": {
           "name": "publication_date",
@@ -108,6 +110,17 @@
           "length": 6,
           "default": "now()",
           "mappedType": "datetime"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "numeric(10,0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "precision": 10,
+          "scale": 0,
+          "mappedType": "decimal"
         }
       },
       "name": "book",

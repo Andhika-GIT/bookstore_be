@@ -23,7 +23,7 @@ export class Book {
   @Property()
   rating!: string;
 
-  @Property()
+  @Property({ type: 'numeric' })
   total_page!: number;
 
   @Property()
@@ -38,4 +38,7 @@ export class Book {
     nullable: true,
   })
   updated_at: Date;
+
+  @Property({ type: 'numeric' })
+  quantity!: number;
 }
