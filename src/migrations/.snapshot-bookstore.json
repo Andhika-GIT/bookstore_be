@@ -170,8 +170,8 @@
           "nullable": false,
           "mappedType": "string"
         },
-        "image_url": {
-          "name": "image_url",
+        "img_url": {
+          "name": "img_url",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

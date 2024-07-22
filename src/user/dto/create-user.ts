@@ -22,7 +22,7 @@ export class CreateUserDto {
   address: string;
 
   @IsString()
-  imgURL: string;
+  img_url?: string;
 
   @IsNotEmpty()
   @IsString()
