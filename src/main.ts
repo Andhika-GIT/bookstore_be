@@ -16,7 +16,18 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     allowedHeaders: ['content-type'],
-    origin: 'http://localhost:3000',
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        'http://localhost:4000',
+        'http://localhost:5000',
+        'http://example.com',
+      ];
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   });
 
