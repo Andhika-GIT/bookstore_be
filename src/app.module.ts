@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { CartModule } from './cart/cart.module';
 import config from './mikro-orm.config';
 
 @Module({
@@ -20,6 +21,7 @@ import config from './mikro-orm.config';
     UserModule,
     AuthModule,
     CloudinaryModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService],
