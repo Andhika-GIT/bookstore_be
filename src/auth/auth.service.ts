@@ -2,19 +2,16 @@ import { CreateUserDto } from '@/auth/dto/create-user';
 import { BadRequestException } from '@nestjs/common';
 import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { setCookie } from '@/common/utils/cookie.util';
-import { Response } from 'express';
 import { hashPassword, verifyPassword } from '@/common/utils/password.util';
 import { SignInUserDto } from './dto/signIn-user';
 import { User } from '@/user/entities/user.entity';
-import { sendResponse } from '@/common/utils/response.util';
+import { CloudinaryService } from '@/cloudinary/cloudinary.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly jwtService: JwtService,
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
 
   async validateUser(user: SignInUserDto): Promise<User> {
@@ -36,30 +33,42 @@ export class AuthService {
     return findUser;
   }
 
-  async signUp(user: CreateUserDto, response: Response) {
-    const currentUser = await this.userService.findByEmail(user?.email);
+  async createUser(
+    user: CreateUserDto,
+    file: Express.Multer.File,
+  ): Promise<User> {
+    try {
+      let img_url = '';
+      const currentUser = await this.userService.findByEmail(user?.email);
 
-    if (currentUser) {
-      throw new BadRequestException('Email already used');
+      if (currentUser) {
+        throw new BadRequestException('Email already used');
+      }
+
+      const hashedPassword = await hashPassword(user?.password);
+
+      // upload image if exist
+      if (file) {
+        const publicId = await this.cloudinaryService.uploadImage(file);
+
+        this.cloudinaryService.generateOptimizedUrl(publicId);
+        const transformedURL =
+          this.cloudinaryService.generatedTransformtedUrl(publicId);
+
+        img_url = transformedURL;
+      }
+
+      const newUser: CreateUserDto = {
+        ...user,
+        password: hashedPassword,
+        img_url: img_url,
+      };
+
+      const updatedUser = await this.userService.create(newUser);
+
+      return updatedUser;
+    } catch (e) {
+      throw new Error(`Failed to create user: ${e.message}`);
     }
-
-    const hashedPassword = await hashPassword(user?.password);
-
-    const newUser: CreateUserDto = {
-      ...user,
-      password: hashedPassword,
-    };
-
-    await this.userService.create(newUser);
-
-    setCookie(response, 'jwt', this.jwtService.sign({ email: user.email }));
-
-    return sendResponse(response, 200, 'sucessfully sign up');
-  }
-
-  async signIn(user: User, response: Response) {
-    setCookie(response, 'jwt', this.jwtService.sign({ email: user.email }));
-
-    return sendResponse(response, 200, 'sucessfully sign up');
   }
 }

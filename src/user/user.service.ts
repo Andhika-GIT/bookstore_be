@@ -28,13 +28,13 @@ export class UserService {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.userRepository.findOneOrFail({ email: email });
+    return this.userRepository.findOne({ email: email });
   }
 
   async create(user: CreateUserDto): Promise<User> {
-    const newUser = await this.userRepository.create(user);
+    const newUser = this.userRepository.create(user);
 
-    await this.em.persistAndFlush(user);
+    await this.em.persistAndFlush(newUser);
 
     return newUser;
   }
