@@ -16,18 +16,11 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     allowedHeaders: ['content-type'],
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        'http://localhost:4000',
-        'http://localhost:5000',
-        'http://example.com',
-      ];
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: [
+      'http://localhost:4000', // Origin pertama
+      'http://localhost:5000', // Origin kedua (contoh port lain)
+      'http://example.com', // Origin ketiga (domain lain)
+    ],
     credentials: true,
   });
 
