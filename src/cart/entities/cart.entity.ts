@@ -1,15 +1,24 @@
-import { PrimaryKey, Property, Entity } from '@mikro-orm/core';
+import { User } from '@/user/entities/user.entity';
+import { CartItem } from './cart_item.entity';
+import {
+  PrimaryKey,
+  Property,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  Collection,
+} from '@mikro-orm/core';
 
 @Entity()
 export class Cart {
   @PrimaryKey()
   id: number;
 
-  @Property()
-  user_id!: number;
+  @ManyToOne()
+  user_id!: User;
 
-  @Property()
-  book_id!: number;
+  @OneToMany({ mappedBy: 'cart_id' })
+  items = new Collection<CartItem>(this);
 
   @Property({ defaultRaw: 'now()', nullable: true })
   created_at: Date = new Date();
