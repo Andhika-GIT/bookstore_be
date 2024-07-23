@@ -9,5 +9,6 @@ import { CloudinaryModule } from '@/cloudinary/cloudinary.module';
   imports: [MikroOrmModule.forFeature([Book]), CloudinaryModule],
   providers: [BookService],
   controllers: [BookController],
+  exports: [BookService, MikroOrmModule],
 })
 export class BookModule {}

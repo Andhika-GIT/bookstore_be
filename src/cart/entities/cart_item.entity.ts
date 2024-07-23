@@ -7,10 +7,14 @@ export class CartItem {
   @PrimaryKey()
   id: number;
 
-  @ManyToOne()
+  @ManyToOne({
+    fieldName: 'cart_id',
+  })
   cart_id!: Cart;
 
-  @ManyToOne()
+  @ManyToOne({
+    fieldName: 'book_id',
+  })
   book_id!: Book;
 
   @Property()

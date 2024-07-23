@@ -14,7 +14,9 @@ export class Cart {
   @PrimaryKey()
   id: number;
 
-  @ManyToOne()
+  @ManyToOne({
+    fieldName: 'user_id',
+  })
   user_id!: User;
 
   @OneToMany({ mappedBy: 'cart_id' })
