@@ -35,11 +35,12 @@ export class CartController {
 
   @Get('user/items')
   async findAllCartItemsByUserId(
-    @Param('userId', ParseIntPipe) userId: number,
     @Res() res: Response,
     @Request() req: { user: User },
   ) {
-    const cartItems = this.cartService.findAllCartItemsByUserId(req?.user?.id);
+    const cartItems = await this.cartService.findAllCartItemsByUserId(
+      req?.user?.id,
+    );
 
     sendResponse(
       res,
