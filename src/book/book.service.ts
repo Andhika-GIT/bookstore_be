@@ -25,6 +25,10 @@ export class BookService {
     return handleFindOrFail(this.bookRepository, { id });
   }
 
+  async getBookQuantity(id: number): Promise<number> {
+    const book = await handleFindOrFail(this.bookRepository, { id });
+    return book?.quantity;
+  }
   async createBook(
     book: CreateBookDto,
     file: Express.Multer.File,
