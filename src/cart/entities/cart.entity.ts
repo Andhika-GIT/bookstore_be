@@ -15,11 +15,11 @@ export class Cart {
   id: number;
 
   @ManyToOne({
-    fieldName: 'user_id',
+    fieldName: 'user',
   })
-  user_id!: User;
+  user!: User;
 
-  @OneToMany({ mappedBy: 'cart_id' })
+  @OneToMany({ mappedBy: 'cart' })
   items = new Collection<CartItem>(this);
 
   @Property({ defaultRaw: 'now()', nullable: true })

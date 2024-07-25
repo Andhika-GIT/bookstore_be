@@ -8,14 +8,14 @@ export class CartItem {
   id: number;
 
   @ManyToOne({
-    fieldName: 'cart_id',
+    fieldName: 'cart',
   })
-  cart_id!: Cart;
+  cart!: Cart;
 
   @ManyToOne({
-    fieldName: 'book_id',
+    fieldName: 'book',
   })
-  book_id!: Book;
+  book!: Book;
 
   @Property()
   quantity!: number;

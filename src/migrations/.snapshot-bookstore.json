@@ -258,8 +258,8 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "user_id": {
-          "name": "user_id",
+        "user": {
+          "name": "user",
           "type": "int",
           "unsigned": false,
           "autoincrement": false,
@@ -306,10 +306,10 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "cart_user_id_foreign": {
-          "constraintName": "cart_user_id_foreign",
+        "cart_user_foreign": {
+          "constraintName": "cart_user_foreign",
           "columnNames": [
-            "user_id"
+            "user"
           ],
           "localTableName": "public.cart",
           "referencedColumnNames": [
@@ -332,8 +332,8 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "cart_id": {
-          "name": "cart_id",
+        "cart": {
+          "name": "cart",
           "type": "int",
           "unsigned": false,
           "autoincrement": false,
@@ -341,8 +341,8 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "book_id": {
-          "name": "book_id",
+        "book": {
+          "name": "book",
           "type": "int",
           "unsigned": false,
           "autoincrement": false,
@@ -376,10 +376,10 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "cart_item_cart_id_foreign": {
-          "constraintName": "cart_item_cart_id_foreign",
+        "cart_item_cart_foreign": {
+          "constraintName": "cart_item_cart_foreign",
           "columnNames": [
-            "cart_id"
+            "cart"
           ],
           "localTableName": "public.cart_item",
           "referencedColumnNames": [
@@ -388,10 +388,10 @@
           "referencedTableName": "public.cart",
           "updateRule": "cascade"
         },
-        "cart_item_book_id_foreign": {
-          "constraintName": "cart_item_book_id_foreign",
+        "cart_item_book_foreign": {
+          "constraintName": "cart_item_book_foreign",
           "columnNames": [
-            "book_id"
+            "book"
           ],
           "localTableName": "public.cart_item",
           "referencedColumnNames": [
