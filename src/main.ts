@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {
+  BadRequestExceptionFilter,
   HttpExceptionFilter,
   NotFoundExceptionFilter,
   UnauthorizedExceptionFilter,
@@ -14,6 +15,7 @@ async function bootstrap() {
     new NotFoundExceptionFilter(),
     new HttpExceptionFilter(),
     new UnauthorizedExceptionFilter(),
+    new BadRequestExceptionFilter(),
   );
   app.use(cookieParser());
   app.enableCors({

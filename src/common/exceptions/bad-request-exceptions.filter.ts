@@ -1,13 +1,15 @@
-// exceptions/not-found-exception.filter.ts
-
-import { Catch, ExceptionFilter } from '@nestjs/common';
+import {
+  Catch,
+  ExceptionFilter,
+  ArgumentsHost,
+  BadRequestException,
+} from '@nestjs/common';
 import { Response } from 'express';
-import { NotFoundException } from '@nestjs/common';
 import { sendResponse } from '../utils/response.util';
 
-@Catch(NotFoundException)
-export class NotFoundExceptionFilter implements ExceptionFilter {
-  catch(exception: NotFoundException, host: any) {
+@Catch(BadRequestException)
+export class BadRequestExceptionFilter implements ExceptionFilter {
+  catch(exception: BadRequestException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response: Response = ctx.getResponse();
 
@@ -17,7 +19,8 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
     const message =
       typeof errorResponse.message === 'string'
         ? errorResponse.message
-        : 'Not found';
-    sendResponse(response, 404, message);
+        : 'Bad Request';
+
+    sendResponse(response, 400, message);
   }
 }

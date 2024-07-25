@@ -13,6 +13,13 @@ export class UnauthorizedExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response: Response = ctx.getResponse();
 
-    sendResponse(response, 401, 'Unauthorized');
+    const errorResponse = exception.getResponse() as {
+      message: string | string[];
+    };
+    const message =
+      typeof errorResponse.message === 'string'
+        ? errorResponse.message
+        : 'Unauthorized';
+    sendResponse(response, 401, message);
   }
 }
