@@ -12,7 +12,6 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { BookService } from './book.service';
-import { Book } from './entities/book.entity';
 import { Response } from 'express';
 import { CreateBookDto } from './dto/create-book';
 import { sendResponse } from '@/common/utils/response.util';
@@ -23,14 +22,27 @@ export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @Get()
-  async findAll(@Query('page') page: string): Promise<Book[]> {
+  async findAll(@Query('page') page: string, @Res() res: Response) {
     const pageNumber = parseInt(page, 10) || 1;
-    return this.bookService.findAll(pageNumber);
+
+    try {
+      const { books, nextPage } = await this.bookService.findAll(pageNumber);
+
+      sendResponse(res, 200, 'Sucessfully retrieved all books', {
+        totalData: books?.length,
+        nextPage: nextPage,
+        books: books,
+      });
+    } catch (e) {
+      sendResponse(res, 500, e.message);
+    }
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.bookService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
+    const book = await this.bookService.findOne(id);
+
+    sendResponse(res, 200, 'Succesfully retrieve book', book);
   }
 
   @UseFileInterceptor('img_url') // Custom decorator for file upload with correct key

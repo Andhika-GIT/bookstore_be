@@ -4,6 +4,6 @@ import { BookFactory } from '@/factories/book.factory';
 
 export class DatabaseSeeder extends Seeder {
   async run(em: EntityManager): Promise<void> {
-    await new BookFactory(em).create(10);
+    await new BookFactory(em).create(50);
   }
 }

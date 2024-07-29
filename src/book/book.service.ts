@@ -15,10 +15,24 @@ export class BookService {
     private readonly em: EntityManager, // Inject the EntityManager
   ) {}
 
-  async findAll(page: number = 1): Promise<Book[]> {
-    const pageSize = 5;
+  async findAll(
+    page: number = 1,
+  ): Promise<{ books: Book[]; nextPage: number }> {
+    const pageSize = 8;
     const offset = (page - 1) * pageSize;
-    return this.bookRepository.findAll({ limit: pageSize, offset: offset });
+
+    const books = await this.bookRepository.findAll({
+      limit: pageSize,
+      offset: offset,
+    });
+
+    const totalBooks = await this.bookRepository.count();
+
+    const totalPage = Math.ceil(totalBooks / pageSize);
+
+    const nextPage = page < totalPage ? page + 1 : null;
+
+    return { books, nextPage };
   }
 
   async findOne(id: number): Promise<Book> {

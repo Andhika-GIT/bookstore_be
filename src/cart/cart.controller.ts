@@ -81,7 +81,7 @@ export class CartController {
 
       sendResponse(res, HttpStatus.OK, 'Successfully create cart');
     } catch (error) {
-      return sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+      return sendResponse(res, error?.status, error.message);
     }
   }
 }
