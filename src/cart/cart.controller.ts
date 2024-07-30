@@ -55,7 +55,7 @@ export class CartController {
     @Param('cartId', ParseIntPipe) cartId: number,
     @Res() res: Response,
   ) {
-    const cartItems = this.cartService.findAllCartItemsByCartId(cartId);
+    const cartItems = await this.cartService.findAllCartItemsByCartId(cartId);
 
     sendResponse(
       res,

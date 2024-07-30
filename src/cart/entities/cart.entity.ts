@@ -19,7 +19,7 @@ export class Cart {
   })
   user!: User;
 
-  @OneToMany({ mappedBy: 'cart' })
+  @OneToMany(() => CartItem, (item) => item.cart, { orphanRemoval: true })
   items = new Collection<CartItem>(this);
 
   @Property({ defaultRaw: 'now()', nullable: true })

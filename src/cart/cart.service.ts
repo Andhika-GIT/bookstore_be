@@ -65,11 +65,19 @@ export class CartService {
         cart: cart_id,
       },
       {
-        populate: [],
+        populate: ['book'],
       },
     );
 
     return cartItems;
+  }
+
+  async findCartItemByProductId(book_id: number): Promise<CartItem> {
+    const cartItem = await this.cartItemRepository.findOneOrFail({
+      book: book_id,
+    });
+
+    return cartItem;
   }
 
   async createCart(reqItems: CreateCartDto) {
@@ -83,6 +91,7 @@ export class CartService {
       currentCart = this.cartRepository.create({
         user: reqItems?.user_id,
       });
+      CartItem;
 
       await this.em.persistAndFlush(currentCart);
     }
@@ -129,6 +138,17 @@ export class CartService {
       });
 
       await this.em.persistAndFlush(newCartItem);
+    }
+  }
+
+  async deleteCartItemQuantity(cartItem: CartItem) {
+    const cart = cartItem.cart;
+    if (cartItem.quantity > 1) {
+      cartItem.quantity -= 1;
+      await this.em.persistAndFlush(cartItem);
+    } else {
+      cart.items.remove(cartItem);
+      await this.em.persistAndFlush(cart);
     }
   }
 }
