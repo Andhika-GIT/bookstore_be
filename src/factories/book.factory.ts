@@ -16,6 +16,7 @@ export class BookFactory extends Factory<Book> {
       rating: faker.datatype.number({ min: 1, max: 5 }).toString(),
       total_page: faker.datatype.number({ min: 100, max: 500 }),
       publication_date: faker.date.past().toISOString().split('T')[0],
+      price: faker.datatype.float({ min: 10, max: 100, precision: 0.01 }),
       quantity: faker.datatype.number({ min: 1, max: 20 }),
     };
   }

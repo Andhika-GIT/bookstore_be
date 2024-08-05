@@ -29,6 +29,9 @@ export class Book {
   @Property()
   publication_date!: string;
 
+  @Property({type: 'float'})
+  price!: number;
+
   @Property({ defaultRaw: 'now()', nullable: true })
   created_at: Date = new Date();
 

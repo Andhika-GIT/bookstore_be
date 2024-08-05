@@ -89,6 +89,15 @@
           "nullable": false,
           "mappedType": "string"
         },
+        "price": {
+          "name": "price",
+          "type": "real",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "float"
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",

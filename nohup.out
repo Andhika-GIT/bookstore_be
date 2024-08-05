@@ -1,0 +1,326 @@
+[8:0805/131341.175927:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+The disableGPU setting is set to undefined
+Not disabling GPU
+Gtk-Message: 13:13:41.550: Failed to load module "xapp-gtk3-module"
+[8:0805/131341.615332:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[8:0805/131341.615369:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+Main: Starting cleanup of stale files
+ProtocolHandler~setDefaultProtocolClient: Command failed: xdg-mime default Postman.desktop x-scheme-handler/postman
+/bin/sh: line 1: xdg-mime: command not found
+
+LaunchProcess: failed to execvp:
+xdg-settings
+Main: Cleanup of stale files completed
+1722838421673 main info "Booting Postman 11.6.1, linux-6.5.0-45-generic on x64"
+1722838421673 main info "EventBus~initialize - Success"
+1722838421675 main info "Proxy configuration has not been setup"
+1722838421675 main info "CloudProxyManager~init - Success"
+1722838421704 main info "performShellDataMigration: Starting shell data migration"
+1722838421704 main info "migrateShellData:Starting"
+1722838421706 main info "migrateShellData: Old storage cleaned up"
+1722838421877 main info "migrateShellData: Got data from shell. Writing to storage"
+1722838421882 main info "performShellDataMigration: Migration successful on try count 1"
+1722838421888 main info "UpdateHandler~init - Success"
+1722838421888 main info "LeaderSelection: Initialized successfully"
+1722838421889 main info "VersionDependencyService: Initialized successfully"
+error reading fileError: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838421950 main info "Generated root certificate for linux"
+1722838421952 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1722838421975 main info "GPU detected VID 4318 DID 9476 ACTIVE true"
+1722838421977 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1722838421978 main info "newAccountRegionPreferenceService~getToggleMenuTemplate - Using preference:","useUSRegion"
+1722838421986 main info "shellController~init: Success"
+1722838421992 main info "shellMeta~init: Success"
+1722838421993 main info "partitionMigrationService: State of V7 partition:"
+1722838421993 main info "partitionMigrationService: V7 partitions",[]
+1722838421993 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no partition with scratchpad namespace"
+1722838421993 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no transit partition which could have been used for scratchpad"
+1722838421993 main info "partitionMigrationService~init: Success"
+1722838421996 main info "partitionMigrationService~runV8PartitionsIntegrity: Two way migration~ removing the following partitions from v8",[]
+1722838421998 main info "userPartitionService~_rectifyTheActivePartitionOfApplication: Setting the active partition to ",null
+1722838422003 main info "userPartitionService~init: Success"
+1722838422011 main info "userPartitionService: State of v8 partition system:"
+1722838422013 main info "shell~init~getPartitionToLoad: loading scratchpad partition"
+1722838422013 main info "userPartitionService: List of partitions:",[]
+1722838422013 main info "userPartitionService: users global meta:",{}
+1722838422024 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: undefined"
+1722838422116 main error "Error encountered while creating root CA",{"name":"Error","message":"Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/5bb63c38595b7e6d2891efa36fff3732e405a126\n40574CA3ED7A0000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n","stack":"Error: Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/5bb63c38595b7e6d2891efa36fff3732e405a126\n40574CA3ED7A0000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n\n    at done (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:171:1)\n    at ChildProcess.<anonymous> (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:188:1)\n    at ChildProcess.emit (node:events:517:28)\n    at ChildProcess.emit (node:domain:489:12)\n    at maybeClose (node:internal/child_process:1098:16)\n    at Socket.<anonymous> (node:internal/child_process:450:11)\n    at Socket.emit (node:events:517:28)\n    at Socket.emit (node:domain:489:12)\n    at Pipe.<anonymous> (node:net:350:12)"}
+1722838422116 main error "Error generating rootCA certificate for HTTPS proxy",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838422116 main error "HTTPSProxy~Unable to generate certificates",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838423655 main info "RuntimeIPCAgent~started: Success"
+1722838423671 main info "Main~scratchpadThemeAction:: action: set, value: dark"
+1722838423673 main info "Main~scratchpadThemeAction:: action: set, value: dark"
+1722838423679 main info "Main~scratchpadThemeAction:: action: set, value: dark"
+1722838423688 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+1722838423694 main info "windowManager: First requester booted successfully."
+1722838423694 main info "windowManager~restoreWindows: Restoring requester windows"
+1722838423694 main info "Main~AppEvents - Received booted event for process requester.Version undefined UI Version: undefined Desktop Platform Version: 11.6.1"
+1722838430786 main info "VersionDependencyService: Resetting UI version as user logged out/switched account"
+1722838430786 main info "Main - model-events~user - (users, add) received"
+1722838431004 main info "AuthHandler~open: Received dom-ready event."
+1722838431005 main info "AuthHandler~open: Received did-finish-load event."
+1722838431011 main error "ProtocolHandler~setDefaultProtocolClient: Command failed: xdg-mime default Postman.desktop x-scheme-handler/postman\n/bin/sh: line 1: xdg-mime: command not found\n"
+LaunchProcess: failed to execvp:
+xdg-settings
+1722838431023 main warn "AuthHandler~open: Current app is not default protocol client - Falling back to polling mechanism."
+1722838431023 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1722838431023 main info "newAccountRegionPreferenceService~getRegionPreference - Using preference:","useUSRegion"
+1722838431024 main info "AuthHandler~open: new Account region preference:","us"
+1722838431024 main info "AuthHandler~open: get multiLoginToken token."
+1722838431025 main info "AuthHandler~open: Publishing initialize event to auth-window channel."
+1722838450438 main info "Shell~init~loginUser: associating the user ","18447102"," with transit partition"
+1722838450438 main info "userPartitionService~getNewPartitionId: creating a partition with userId and teamId as 0"
+1722838450448 main info "userPartitionService~associateTransitPartition: ",{"partitionId":"bb9bcf4e-9347-4c02-be58-adee1c35f1b1","context":{"namespace":"users","userId":"18447102","teamId":"0","region":"us"}}
+1722838450465 main info "userPartitionService: State of v8 partition system:"
+1722838450468 main info "userPartitionService: List of partitions:",[{"partitionId":"bb9bcf4e-9347-4c02-be58-adee1c35f1b1","namespace":"users","userId":"18447102","teamId":"0","lastUpdated":"2024-08-05T06:14:10.448Z"},{"partitionId":"7c6db456-9c0e-4498-8a7e-c200249e23ab","namespace":"scratchPad","userId":0,"teamId":0,"isDirty":false}]
+1722838450468 main info "userPartitionService: users global meta:",{}
+1722838450473 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: us"
+1722838453994 main info "Main~getRemoteInitPath:: "
+1722838454059 main info "Main - model-events~user - (user, update) received"
+1722838454060 main info "Main~reload: https://desktop.postman.com/?desktopVersion=11.6.1&userId=18447102&teamId=0&region=us"
+1722838454204 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838454207 main error "Main~handleUncaughtError - Uncaught errors",{"errno":-2,"code":"ENOENT","syscall":"open","path":"/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt","name":"Error","message":"ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'","stack":"Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'"}
+Main~handleUncaughtError - Uncaught errors [Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+}
+INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
+IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+1722838454224 main info "windowManager: First requester booted successfully."
+1722838454224 main info "windowManager~restoreWindows: Restoring requester windows"
+1722838454224 main info "Main~AppEvents - Received booted event for process requester.Version 11.6.2 UI Version: 11.6.2-ui-240731-0006 Desktop Platform Version: 11.6.1"
+[8:0805/131458.072590:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+The disableGPU setting is set to undefined
+Not disabling GPU
+Gtk-Message: 13:14:58.270: Failed to load module "xapp-gtk3-module"
+[8:0805/131458.297413:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[8:0805/131458.297450:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+Main: Starting cleanup of stale files
+ProtocolHandler~setDefaultProtocolClient: Command failed: xdg-mime default Postman.desktop x-scheme-handler/postman
+/bin/sh: line 1: xdg-mime: command not found
+
+LaunchProcess: failed to execvp:
+xdg-settings
+Main: Cleanup of stale files completed
+Main~createDefaultWorkingDir - Default working dir creation already attempted
+1722838498352 main info "Booting Postman 11.6.1, linux-6.5.0-45-generic on x64"
+1722838498353 main info "EventBus~initialize - Success"
+1722838498354 main info "Proxy configuration has not been setup"
+1722838498354 main info "CloudProxyManager~init - Success"
+1722838498381 main info "performShellDataMigration: Migration has already been done. Bailing out"
+1722838498385 main info "UpdateHandler~init - Success"
+1722838498386 main info "LeaderSelection: Initialized successfully"
+1722838498386 main info "VersionDependencyService: Initialized successfully"
+error reading fileError: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838498390 main info "Generated root certificate for linux"
+1722838498390 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1722838498401 main info "GPU detected VID 4318 DID 9476 ACTIVE true"
+1722838498403 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1722838498403 main info "newAccountRegionPreferenceService~getToggleMenuTemplate - Using preference:","useUSRegion"
+1722838498416 main info "shellController~init: Success"
+1722838498418 main info "shellMeta~init: Success"
+1722838498419 main info "partitionMigrationService: State of V7 partition:"
+1722838498419 main info "partitionMigrationService: V7 partitions",[]
+1722838498419 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no partition with scratchpad namespace"
+1722838498419 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no transit partition which could have been used for scratchpad"
+1722838498419 main info "partitionMigrationService~init: Success"
+1722838498424 main info "partitionMigrationService~runV8PartitionsIntegrity: Two way migration~ removing the following partitions from v8",[]
+1722838498426 main info "userPartitionService~getRecentV8UserPartition: recent v8 user context partition ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722838498426 main info "userPartitionService~_rectifyTheActivePartitionOfApplication: Setting the active partition to ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722838498431 main info "userPartitionService~init: Success"
+1722838498442 main info "userPartitionService: State of v8 partition system:"
+1722838498443 main info "shell~init~getPartitionToLoad: loading active partition"
+1722838498444 main info "userPartitionService: List of partitions:",[{"partitionId":"bb9bcf4e-9347-4c02-be58-adee1c35f1b1","namespace":"users","userId":"18447102","teamId":"0","lastUpdated":"2024-08-05T06:14:10.448Z"},{"partitionId":"7c6db456-9c0e-4498-8a7e-c200249e23ab","namespace":"scratchPad","userId":0,"teamId":0,"isDirty":false}]
+1722838498444 main info "userPartitionService: users global meta:",{}
+1722838498446 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: us"
+1722838498491 main error "Error encountered while creating root CA",{"name":"Error","message":"Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/7957338571d2beaff78a8019836ec0bfa921b8fb\n4017DC6F007C0000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n","stack":"Error: Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/7957338571d2beaff78a8019836ec0bfa921b8fb\n4017DC6F007C0000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n\n    at done (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:171:1)\n    at ChildProcess.<anonymous> (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:188:1)\n    at ChildProcess.emit (node:events:517:28)\n    at ChildProcess.emit (node:domain:489:12)\n    at maybeClose (node:internal/child_process:1098:16)\n    at Socket.<anonymous> (node:internal/child_process:450:11)\n    at Socket.emit (node:events:517:28)\n    at Socket.emit (node:domain:489:12)\n    at Pipe.<anonymous> (node:net:350:12)"}
+1722838498491 main error "Error generating rootCA certificate for HTTPS proxy",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838498491 main error "HTTPSProxy~Unable to generate certificates",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838501418 main info "Main~getRemoteInitPath:: "
+1722838501627 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838501632 main error "Main~handleUncaughtError - Uncaught errors",{"errno":-2,"code":"ENOENT","syscall":"open","path":"/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt","name":"Error","message":"ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'","stack":"Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'"}
+Main~handleUncaughtError - Uncaught errors [Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+}
+INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
+IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+1722838501664 main info "windowManager: First requester booted successfully."
+1722838501664 main info "windowManager~restoreWindows: Restoring requester windows"
+1722838501664 main info "Main~AppEvents - Received booted event for process requester.Version 11.6.2 UI Version: 11.6.2-ui-240731-0006 Desktop Platform Version: 11.6.1"
+[8:0805/131526.416465:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+The disableGPU setting is set to undefined
+Not disabling GPU
+Gtk-Message: 13:15:26.613: Failed to load module "xapp-gtk3-module"
+[8:0805/131526.642083:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[8:0805/131526.642118:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+Main: Starting cleanup of stale files
+ProtocolHandler~setDefaultProtocolClient: Command failed: xdg-mime default Postman.desktop x-scheme-handler/postman
+/bin/sh: line 1: xdg-mime: command not found
+
+LaunchProcess: failed to execvp:
+xdg-settings
+Main: Cleanup of stale files completed
+Main~createDefaultWorkingDir - Default working dir creation already attempted
+1722838526698 main info "Booting Postman 11.6.1, linux-6.5.0-45-generic on x64"
+1722838526698 main info "EventBus~initialize - Success"
+1722838526700 main info "Proxy configuration has not been setup"
+1722838526700 main info "CloudProxyManager~init - Success"
+1722838526726 main info "performShellDataMigration: Migration has already been done. Bailing out"
+1722838526731 main info "UpdateHandler~init - Success"
+1722838526731 main info "LeaderSelection: Initialized successfully"
+1722838526732 main info "VersionDependencyService: Initialized successfully"
+error reading fileError: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838526735 main info "Generated root certificate for linux"
+1722838526736 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1722838526746 main info "GPU detected VID 4318 DID 9476 ACTIVE true"
+1722838526748 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1722838526748 main info "newAccountRegionPreferenceService~getToggleMenuTemplate - Using preference:","useUSRegion"
+1722838526760 main info "shellController~init: Success"
+1722838526762 main info "shellMeta~init: Success"
+1722838526762 main info "partitionMigrationService: State of V7 partition:"
+1722838526762 main info "partitionMigrationService: V7 partitions",[]
+1722838526763 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no partition with scratchpad namespace"
+1722838526763 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no transit partition which could have been used for scratchpad"
+1722838526763 main info "partitionMigrationService~init: Success"
+1722838526767 main info "partitionMigrationService~runV8PartitionsIntegrity: Two way migration~ removing the following partitions from v8",[]
+1722838526769 main info "userPartitionService~getRecentV8UserPartition: recent v8 user context partition ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722838526770 main info "userPartitionService~_rectifyTheActivePartitionOfApplication: Setting the active partition to ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722838526773 main info "userPartitionService~init: Success"
+1722838526781 main info "userPartitionService: State of v8 partition system:"
+1722838526783 main info "shell~init~getPartitionToLoad: loading active partition"
+1722838526784 main info "userPartitionService: List of partitions:",[{"partitionId":"bb9bcf4e-9347-4c02-be58-adee1c35f1b1","namespace":"users","userId":"18447102","teamId":"0","lastUpdated":"2024-08-05T06:14:10.448Z"},{"partitionId":"7c6db456-9c0e-4498-8a7e-c200249e23ab","namespace":"scratchPad","userId":0,"teamId":0,"isDirty":false}]
+1722838526784 main info "userPartitionService: users global meta:",{}
+1722838526786 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: us"
+1722838526826 main error "Error encountered while creating root CA",{"name":"Error","message":"Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/46fe14ca251696a5c8869ecf107c0eb26002505f\n407703F606730000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n","stack":"Error: Invalid openssl exit code: 1\n% openssl req -new -sha256 -subj /C=US/CN=Postman Proxy CA -key /home/hubla/.var/app/com.getpostman.Postman/cache/46fe14ca251696a5c8869ecf107c0eb26002505f\n407703F606730000:error:03000093:digital envelope routines:default_check:command not supported:../crypto/evp/ctrl_params_translate.c:329:\n\n    at done (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:171:1)\n    at ChildProcess.<anonymous> (/app/extra/Postman/resources/app/node_modules/@postman/pem/webpack:/pem/lib/openssl.js:188:1)\n    at ChildProcess.emit (node:events:517:28)\n    at ChildProcess.emit (node:domain:489:12)\n    at maybeClose (node:internal/child_process:1098:16)\n    at Socket.<anonymous> (node:internal/child_process:450:11)\n    at Socket.emit (node:events:517:28)\n    at Socket.emit (node:domain:489:12)\n    at Pipe.<anonymous> (node:net:350:12)"}
+1722838526826 main error "Error generating rootCA certificate for HTTPS proxy",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838526826 main error "HTTPSProxy~Unable to generate certificates",{"name":"Error","message":"Unable to regenerate new certificates","stack":"Error: Unable to regenerate new certificates\n    at Object.ensureRootCAPresence (/app/extra/Postman/resources/app/services/proxyCertificateService.js:182:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at /app/extra/Postman/resources/app/services/proxyCertificateService.js:303:22"}
+1722838527625 main info "Main~getRemoteInitPath:: "
+1722838527663 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+1722838527666 main error "Main~handleUncaughtError - Uncaught errors",{"errno":-2,"code":"ENOENT","syscall":"open","path":"/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt","name":"Error","message":"ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'","stack":"Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'"}
+Main~handleUncaughtError - Uncaught errors [Error: ENOENT: no such file or directory, open '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/hubla/.var/app/com.getpostman.Postman/config/Postman/proxy/postman-proxy-ca.crt'
+}
+INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
+IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+1722838527675 main info "windowManager: First requester booted successfully."
+1722838527676 main info "windowManager~restoreWindows: Restoring requester windows"
+1722838527676 main info "Main~AppEvents - Received booted event for process requester.Version 11.6.2 UI Version: 11.6.2-ui-240731-0006 Desktop Platform Version: 11.6.1"
+[8:0805/141411.723680:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+The disableGPU setting is set to undefined
+Not disabling GPU
+Gtk-Message: 14:14:11.946: Failed to load module "xapp-gtk3-module"
+[8:0805/141411.976436:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[8:0805/141411.976475:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+Main: Starting cleanup of stale files
+Main: Cleanup of stale files completed
+ProtocolHandler~setDefaultProtocolClient: Command failed: xdg-mime default Postman.desktop x-scheme-handler/postman
+/bin/sh: line 1: xdg-mime: command not found
+
+LaunchProcess: failed to execvp:
+xdg-settings
+Main~createDefaultWorkingDir - Default working dir creation already attempted
+1722842052031 main info "Booting Postman 11.6.1, linux-6.5.0-45-generic on x64"
+1722842052031 main info "EventBus~initialize - Success"
+1722842052033 main info "Proxy configuration has not been setup"
+1722842052033 main info "CloudProxyManager~init - Success"
+1722842052060 main info "performShellDataMigration: Migration has already been done. Bailing out"
+1722842052064 main info "UpdateHandler~init - Success"
+1722842052064 main info "LeaderSelection: Initialized successfully"
+1722842052065 main info "VersionDependencyService: Initialized successfully"
+1722842052068 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1722842052079 main info "GPU detected VID 4318 DID 9476 ACTIVE true"
+1722842052082 main info "newAccountRegionPreferenceService~getPreferenceWithFallback - Preference not found in storage."
+1722842052082 main info "newAccountRegionPreferenceService~getToggleMenuTemplate - Using preference:","useUSRegion"
+1722842052094 main info "shellController~init: Success"
+1722842052096 main info "shellMeta~init: Success"
+1722842052096 main info "partitionMigrationService: State of V7 partition:"
+1722842052097 main info "partitionMigrationService: V7 partitions",[]
+1722842052097 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no partition with scratchpad namespace"
+1722842052097 main info "partitionMigrationService~rectifyNamespaceOfScratchPadPartition: There is no transit partition which could have been used for scratchpad"
+1722842052097 main info "partitionMigrationService~init: Success"
+1722842052102 main info "partitionMigrationService~runV8PartitionsIntegrity: Two way migration~ removing the following partitions from v8",[]
+1722842052104 main info "userPartitionService~getRecentV8UserPartition: recent v8 user context partition ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722842052104 main info "userPartitionService~_rectifyTheActivePartitionOfApplication: Setting the active partition to ","bb9bcf4e-9347-4c02-be58-adee1c35f1b1"
+1722842052109 main info "userPartitionService~init: Success"
+1722842052117 main info "userPartitionService: State of v8 partition system:"
+1722842052119 main info "shell~init~getPartitionToLoad: loading active partition"
+1722842052120 main info "userPartitionService: List of partitions:",[{"partitionId":"bb9bcf4e-9347-4c02-be58-adee1c35f1b1","namespace":"users","userId":"18447102","teamId":"0","lastUpdated":"2024-08-05T06:14:10.448Z"},{"partitionId":"7c6db456-9c0e-4498-8a7e-c200249e23ab","namespace":"scratchPad","userId":0,"teamId":0,"isDirty":false}]
+1722842052120 main info "userPartitionService: users global meta:",{}
+1722842052122 main info "Main:windowManager~newRequesterWindow: Fetch and update runtime config: us"
+1722842053017 main info "Main~getRemoteInitPath:: "
+1722842053062 main info "UpdateHandler~app-update-events - Received event",{"name":"checkForElectronVersionUpdated","namespace":"appUpdate"}
+INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
+IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+1722842053071 main info "windowManager: First requester booted successfully."
+1722842053071 main info "windowManager~restoreWindows: Restoring requester windows"
+1722842053071 main info "Main~AppEvents - Received booted event for process requester.Version 11.6.2 UI Version: 11.6.2-ui-240731-0006 Desktop Platform Version: 11.6.1"
+1722842053148 main info "Main~getRemoteInitPath:: "
+1722842053278 main info "INTERCEPTOR CONNECTIVITY: Attempting to start websocket server on port 15611"
+1722842053343 main info "Main~getPlatformLaunchPerfMetrics"
+1722842054591 main info "Main - model-events~user - (user, bootstrapUser) received"
+1722842054591 main info "model-events~user - bootstrapUser received"
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+1722842059799 main info "RuntimeIPCAgent~started: Success"
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+Warning: vkCreateInstance: Found no drivers!
+Warning: vkCreateInstance failed with VK_ERROR_INCOMPATIBLE_DRIVER
+    at CheckVkSuccessImpl (../../../../src/third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:101)
+    at CreateVkInstance (../../../../src/third_party/dawn/src/dawn/native/vulkan/BackendVk.cpp:493)
+    at Initialize (../../../../src/third_party/dawn/src/dawn/native/vulkan/BackendVk.cpp:379)
+    at Create (../../../../src/third_party/dawn/src/dawn/native/vulkan/BackendVk.cpp:301)
+    at operator() (../../../../src/third_party/dawn/src/dawn/native/vulkan/BackendVk.cpp:556)
+
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+1722845769982 main info "sendAnalytics: Error while sending request",{"cause":{"name":"ConnectTimeoutError","code":"UND_ERR_CONNECT_TIMEOUT","message":"Connect Timeout Error","stack":"ConnectTimeoutError: Connect Timeout Error\n    at onConnectTimeout (node:internal/deps/undici/undici:7434:28)\n    at node:internal/deps/undici/undici:7390:50\n    at Immediate._onImmediate (node:internal/deps/undici/undici:7422:13)\n    at processImmediate (node:internal/timers:476:21)"},"name":"TypeError","message":"fetch failed","stack":"TypeError: fetch failed\n    at Object.fetch (node:internal/deps/undici/undici:12293:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'focus', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
+IPCClient ~ WindowHandler: New event is received { type: 'blur', windowId: 1 }
