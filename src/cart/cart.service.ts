@@ -120,14 +120,23 @@ export class CartService {
       await this.em.persistAndFlush(currentCart);
     }
 
+    const currentCartItems = currentCart.items.getItems();
+
+    // Check if the cart already has 10 or more items
+    if (currentCartItems.length >= 10) {
+      throw new BadRequestException(
+        'Cart is full. Please remove at least one item before adding new items.',
+      );
+    }
+
     const bookQuantity = await this.bookservice.getBookQuantity(
       reqItems?.book_id,
     );
 
     // check if cart_item already exist
-    const existingCartItem = currentCart?.items
-      ?.getItems()
-      .find((item) => item?.book?.id === reqItems?.book_id);
+    const existingCartItem = currentCartItems?.find(
+      (item) => item?.book?.id === reqItems?.book_id,
+    );
 
     // if cart item already exist, then update the quantity
     if (existingCartItem) {
