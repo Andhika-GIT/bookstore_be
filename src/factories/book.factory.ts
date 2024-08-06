@@ -20,4 +20,6 @@ export class BookFactory extends Factory<Book> {
       quantity: faker.datatype.number({ min: 1, max: 20 }),
     };
   }
+
+ 
 }

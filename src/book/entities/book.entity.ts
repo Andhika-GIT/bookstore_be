@@ -1,9 +1,11 @@
-import { PrimaryKey, Entity, Property } from '@mikro-orm/core';
+import { BookGenre } from '@/genre/entities/book_genre.entity';
+import { PrimaryKey, Entity, Property, OneToOne } from '@mikro-orm/core';
+
 
 @Entity()
 export class Book {
   @PrimaryKey()
-  id: number;
+  id!: number;
 
   @Property()
   title!: string;
@@ -44,4 +46,6 @@ export class Book {
 
   @Property({ type: 'numeric' })
   quantity!: number;
+
+
 }

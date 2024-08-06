@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CartModule } from './cart/cart.module';
+import { GenreService } from './genre/genre.service';
+import { GenreModule } from './genre/genre.module';
 import config from './mikro-orm.config';
 
 @Module({
@@ -22,6 +24,7 @@ import config from './mikro-orm.config';
     AuthModule,
     CloudinaryModule,
     CartModule,
+    GenreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
