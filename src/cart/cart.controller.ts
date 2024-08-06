@@ -7,6 +7,8 @@ import {
   HttpStatus,
   Body,
   Post,
+  Patch,
+  Delete,
   UseGuards,
   Request,
 } from '@nestjs/common';
@@ -82,6 +84,55 @@ export class CartController {
       sendResponse(res, HttpStatus.OK, 'Successfully create cart');
     } catch (error) {
       return sendResponse(res, error?.status, error.message);
+    }
+  }
+
+  @Patch(':cartItemId/increase')
+  async increaseCartItemQuantity(
+    @Param('cartItemId', ParseIntPipe) cartItemId: number,
+    @Body('quantity', ParseIntPipe) quantity: number,
+    @Res() res: Response,
+  ) {
+    const cartItem = await this.cartService.findCartItemsById(cartItemId);
+
+
+    try {
+      await this.cartService.increaseCartItemQuantity(cartItem, quantity);
+      sendResponse(res, HttpStatus.OK, 'Cart item quantity increased successfully');
+    } catch (error) {
+      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+
+  @Patch(':cartItemId/decrease')
+  async decreaseCartItemQuantity(
+    @Param('cartItemId', ParseIntPipe) cartItemId: number,
+    @Res() res: Response,
+  ) {
+    const cartItem = await this.cartService.findCartItemsById(cartItemId);
+
+
+    try {
+      await this.cartService.decreaseCartItemQuantity(cartItem);
+      sendResponse(res, HttpStatus.OK, 'Cart item quantity decreased successfully');
+    } catch (error) {
+      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+  
+
+  @Delete(':cartItemId')
+  async deleteCartItem(
+    @Param('cartItemId', ParseIntPipe) cartItemId: number,
+    @Res() res: Response,
+  ) {
+    const cartItem = await this.cartService.findCartItemsById(cartItemId);
+
+    try {
+      await this.cartService.deleteCartItem(cartItem);
+      sendResponse(res, HttpStatus.OK, 'Cart item deleted successfully');
+    } catch (error) {
+      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
     }
   }
 }

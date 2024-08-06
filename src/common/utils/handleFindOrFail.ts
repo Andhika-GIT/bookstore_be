@@ -1,14 +1,14 @@
-// src/utils/error-handling.ts
-
-import { EntityRepository } from '@mikro-orm/core';
+import { EntityRepository, Populate } from '@mikro-orm/core';
 import { NotFoundException } from '@nestjs/common';
 
 export async function handleFindOrFail<T extends object>(
   repository: EntityRepository<T>,
   query: any,
+  populate?: Populate<T> // 
 ): Promise<T> {
   try {
     const entity = await repository.findOneOrFail(query, {
+      populate, // Menyertakan parameter populate
       failHandler: (entityName: string) => {
         throw new NotFoundException(`${entityName} not found`);
       },

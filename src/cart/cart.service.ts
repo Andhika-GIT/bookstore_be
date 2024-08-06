@@ -1,10 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityManager, EntityRepository } from '@mikro-orm/core';
 import { CreateCartDto, CartResponseDto } from './dto';
 import { Cart } from './entities/cart.entity';
 import { CartItem } from './entities/cart_item.entity';
 import { BookService } from '@/book/book.service';
+import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 @Injectable()
 export class CartService {
   constructor(
@@ -15,6 +20,12 @@ export class CartService {
     @InjectRepository(CartItem)
     private readonly cartItemRepository: EntityRepository<CartItem>,
   ) {}
+
+  private calculateTotalPrice(cartItems: CartItem[]): number {
+    return cartItems.reduce((total, item) => {
+      return total + item.quantity * item.book.price;
+    }, 0);
+  }
 
   async findAllCart(user_id: number): Promise<Cart[] | undefined[]> {
     return this.cartRepository.find(
@@ -45,14 +56,21 @@ export class CartService {
     const cartItems = cart.items.getItems();
 
     const items = cartItems?.map((item) => ({
+      cart_items_id: item?.id,
       book_id: item?.book?.id,
       img_url: item?.book?.img_url,
       title: item?.book?.title,
       quantity: item?.quantity,
+      book_quantity: item?.book?.quantity,
+      price: item?.book?.price,
     }));
+
+    const totalPrice = this.calculateTotalPrice(cartItems);
 
     return {
       cart_id: cart?.id,
+      total_price: totalPrice,
+      total_items: items?.length,
       items: items,
     };
   }
@@ -73,11 +91,17 @@ export class CartService {
   }
 
   async findCartItemByProductId(book_id: number): Promise<CartItem> {
-    const cartItem = await this.cartItemRepository.findOneOrFail({
+    return await this.cartItemRepository.findOneOrFail({
       book: book_id,
     });
+  }
 
-    return cartItem;
+  async findCartItemsById(id: number): Promise<CartItem> {
+    return handleFindOrFail(this.cartItemRepository, { id }, [
+      'cart',
+      'cart.items',
+      'book',
+    ] as never[]);
   }
 
   async createCart(reqItems: CreateCartDto) {
@@ -141,14 +165,41 @@ export class CartService {
     }
   }
 
-  async deleteCartItemQuantity(cartItem: CartItem) {
-    const cart = cartItem.cart;
-    if (cartItem.quantity > 1) {
-      cartItem.quantity -= 1;
-      await this.em.persistAndFlush(cartItem);
-    } else {
-      cart.items.remove(cartItem);
-      await this.em.persistAndFlush(cart);
+  async increaseCartItemQuantity(cartItem: CartItem, requestQuantity: number) {
+    const book = cartItem.book;
+
+    const newQuantity = cartItem.quantity + requestQuantity;
+
+    if (newQuantity > book.quantity) {
+      throw new BadRequestException(
+        'requested quantity exceeds available stock',
+      );
     }
+
+    cartItem.quantity += requestQuantity;
+    await this.em.persistAndFlush(cartItem);
+  }
+
+  async decreaseCartItemQuantity(cartItem: CartItem) {
+    const cart = cartItem.cart;
+
+    await this.em.transactional(async (em) => {
+      if (cartItem.quantity > 1) {
+        cartItem.quantity -= 1;
+        await em.persistAndFlush(cartItem);
+      } else {
+        cart.items.remove(cartItem);
+        await em.persistAndFlush(cart);
+      }
+    });
+  }
+
+  async deleteCartItem(cartItem: CartItem) {
+    const cart = cartItem.cart;
+
+    await this.em.transactional(async (em) => {
+      cart.items.remove(cartItem);
+      await em.persistAndFlush(cart);
+    });
   }
 }
