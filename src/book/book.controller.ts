@@ -45,7 +45,7 @@ export class BookController {
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
     const genres = await this.genreService.findGenresByBookId(id)
-    const genresNameString = genres?.map(genre => genre?.name).join(', ') || '';
+    const genresNameString = genres?.map(genre => genre?.name)?.join(', ') || '';
     const book = await this.bookService.findOne(id);
 
     sendResponse(res, 200, 'Succesfully retrieve book', {
