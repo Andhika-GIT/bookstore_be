@@ -1,10 +1,13 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 
-import Midtrans from 'midtrans-client';
+import * as Midtrans from 'midtrans-client';
+import { CreateTransactionRequestDto } from './dto/create-transaction-request';
 
 @Injectable()
 export class MidtransService {
+  private snap: Midtrans.Snap;
+
   constructor() {
     this.snap = new Midtrans.Snap({
       isProduction: false,
@@ -12,28 +15,24 @@ export class MidtransService {
     });
   }
 
-  async createTransaction(userData: any, items: any[]) {
-    const grossAmount = items.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0,
-    );
+  async createTransactionToken(transactionData: CreateTransactionRequestDto) {
+    const { total_price, user, items } = transactionData;
 
     const parameter = {
       transaction_details: {
         order_id: `ORDER-${uuidv4()}`,
-        gross_amount: grossAmount,
+        gross_amount: total_price,
       },
       item_details: items.map((item) => ({
-        id: item.book_name, // Ganti dengan ID yang sesuai jika perlu
+        id: item.id,
         price: item.price,
         quantity: item.quantity,
-        name: item.book_name,
+        name: item.name,
       })),
       customer_details: {
-        first_name: userData.first_name,
-        last_name: userData.last_name,
-        email: userData.email,
-        // Anda bisa menambahkan billing_address dan shipping_address jika perlu
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
       },
       enabled_payments: ['bca_va', 'bni_va'], // Hanya BCA VA dan BNI VA
     };

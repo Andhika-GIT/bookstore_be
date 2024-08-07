@@ -23,5 +23,5 @@ export class CreateTransactionRequestDto {
   @ValidateNested({ each: true })
   @IsArray()
   @Type(() => ItemsRequestDto)
-  items: ItemsRequestDto;
+  items: ItemsRequestDto[];
 }
