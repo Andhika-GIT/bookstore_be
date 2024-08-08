@@ -27,11 +27,11 @@ export class TransactionController {
     @Request() req: { user: User },
     @Res() res: Response,
   ) {
-    console.log(clientTransactionBody);
-    const transactionResponse = await this.transactionService.createTransaction(
-      clientTransactionBody,
-      req?.user,
-    );
+    const transactionResponse =
+      await this.transactionService.getTransactionToken(
+        clientTransactionBody,
+        req?.user,
+      );
 
     sendResponse(
       res,

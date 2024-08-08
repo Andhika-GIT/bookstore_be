@@ -7,7 +7,7 @@ import { User } from '@/user/entities/user.entity';
 export class TransactionService {
   constructor(private readonly midtransService: MidtransService) {}
 
-  async createTransaction(
+  async getTransactionToken(
     clientTransactionRequest: ClientTransactionRequestDto,
     userData: User,
   ) {
@@ -43,4 +43,6 @@ export class TransactionService {
 
     return transactionResponse;
   }
+
+  async createOrder() {}
 }
