@@ -21,9 +21,10 @@ async function bootstrap() {
   app.enableCors({
     allowedHeaders: ['content-type'],
     origin: [
-      'http://localhost:4000', // Origin pertama
-      'http://localhost:5000', // Origin kedua (contoh port lain)
-      'http://example.com', // Origin ketiga (domain lain)
+      'http://localhost:4000',
+      'http://localhost:5000',
+      'http://example.com',
+      'http://192.168.1.3',
     ],
     credentials: true,
   });

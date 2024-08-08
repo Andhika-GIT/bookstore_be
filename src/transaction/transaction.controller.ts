@@ -40,4 +40,13 @@ export class TransactionController {
       transactionResponse,
     );
   }
+
+  @Post('callback')
+  handlePaymentCallback(@Body() callbackData: any) {
+    console.log('Received payment callback:', callbackData);
+
+    // Lakukan logika untuk menangani data callback, seperti memperbarui status transaksi
+
+    return { status: 'success' }; // Kirim respons yang sesuai
+  }
 }
