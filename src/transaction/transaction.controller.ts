@@ -16,10 +16,10 @@ import { Response } from 'express';
 import { sendResponse } from '@/common/utils/response.util';
 
 @Controller('transaction')
-@UseGuards(JwtGuard)
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
+  @UseGuards(JwtGuard)
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   @Post('create')
   async createTransaction(
