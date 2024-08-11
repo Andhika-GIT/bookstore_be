@@ -14,6 +14,7 @@ import { ClientTransactionRequestDto } from './dto/client_transaction_request';
 import { User } from '@/user/entities/user.entity';
 import { Response } from 'express';
 import { sendResponse } from '@/common/utils/response.util';
+import { MidtransCallbackDto } from './dto/midtrans_callback';
 
 @Controller('transaction')
 export class TransactionController {
@@ -42,10 +43,8 @@ export class TransactionController {
   }
 
   @Post('callback')
-  handlePaymentCallback(@Body() callbackData: any) {
-    console.log('Received payment callback:', callbackData);
-
-    // Lakukan logika untuk menangani data callback, seperti memperbarui status transaksi
+  handlePaymentCallback(@Body() callbackData: MidtransCallbackDto) {
+    this.transactionService.updateTransactionStatus(callbackData);
 
     return { status: 'success' }; // Kirim respons yang sesuai
   }
