@@ -56,7 +56,7 @@ export class MidtransService {
         last_name: user.last_name,
         email: user.email,
       },
-      enabled_payments: ['bca_va', 'bni_va'], // Hanya BCA VA dan BNI VA,
+      enabled_payments: ['bca_va', 'bni_va', 'credit_card'],
       callbacks: {
         finish: `${process.env.PUBLIC_FRONTEND_URL}`,
         unfinish: `${process.env.PUBLIC_FRONTEND_URL}`,

@@ -10,11 +10,13 @@ import { OrderItem } from './entities/order_item';
 import { Order } from './entities/order';
 import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 import { ClientTransactionResponseDto } from './dto/client_transaction_response';
+import { BookService } from '@/book/book.service';
 
 @Injectable()
 export class TransactionService {
   constructor(
     private readonly midtransService: MidtransService,
+    private readonly bookService: BookService,
     private readonly em: EntityManager,
     @InjectRepository(Order)
     private readonly orderRepository: EntityRepository<Order>,
@@ -83,20 +85,22 @@ export class TransactionService {
     });
 
     // create order items
-    const orderItems: OrderItem[] = clientTransactionRequest?.items?.map(
-      (item) => {
-        return this.orderItemRepository.create({
-          order: order,
-          book: item?.book_id,
-          quantity: item?.quantity,
-          price: item?.price,
-        });
-      },
-    );
+    const orderItems = clientTransactionRequest?.items?.map((item) => {
+      return this.orderItemRepository.create({
+        order: order,
+        book: item?.book_id,
+        quantity: item?.quantity,
+        price: item?.price,
+      });
+    });
 
     // insert order items into order
     order.items.add([...orderItems]);
 
+    // reduce book quantity
+    await this.bookService.reduceBookQuantity(orderItems);
+
+    // save to database
     await this.em.persistAndFlush(order);
 
     return transactionResponse;
@@ -123,31 +127,32 @@ export class TransactionService {
     switch (callbackData.transaction_status) {
       case 'capture':
         if (callbackData.fraud_status === 'accept') {
-          order.status = 'COMPLETED'; // Atau status lain yang sesuai
+          order.status = 'COMPLETED';
         } else {
-          order.status = 'FAILED'; // Atau status lain yang sesuai
+          order.status = 'FAILED';
         }
         break;
 
       case 'settlement':
-        order.status = 'SETTLED'; // Atau status lain yang sesuai
+        order.status = 'SETTLED';
         break;
 
       case 'cancel':
       case 'deny':
       case 'expire':
-        order.status = 'CANCELLED'; // Atau status lain yang sesuai
+        order.status = 'CANCELLED';
+        // restore book quantity
+        await this.bookService.restoreBookQuantity(order.items.getItems());
         break;
 
       case 'pending':
-        order.status = 'PENDING'; // Status tetap PENDING
+        order.status = 'PENDING';
         break;
 
       default:
         throw new BadRequestException('Unknown transaction status');
     }
 
-    // Simpan perubahan ke database
     await this.em.persistAndFlush(order);
 
     return {

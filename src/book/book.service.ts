@@ -5,6 +5,7 @@ import { EntityRepository, EntityManager } from '@mikro-orm/core';
 import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 import { CreateBookDto } from './dto/create-book';
 import { CloudinaryService } from '@/cloudinary/cloudinary.service';
+import { OrderItem } from '@/transaction/entities/order_item';
 
 @Injectable()
 export class BookService {
@@ -70,6 +71,29 @@ export class BookService {
       return newBook;
     } catch (e) {
       throw new Error(`Failed to create book: ${e.message}`);
+    }
+  }
+
+  // quantities
+  async reduceBookQuantity(orderItems: OrderItem[]): Promise<void> {
+    for (const item of orderItems) {
+      const book = await this.findOne(item.book.id);
+
+      if (book.quantity >= item.quantity) {
+        book.quantity -= item.quantity;
+        await this.em.persistAndFlush(book);
+      } else {
+        throw new Error(`Insufficient quantity for book ID: ${book.id}`);
+      }
+    }
+  }
+
+  async restoreBookQuantity(orderItems: OrderItem[]): Promise<void> {
+    for (const item of orderItems) {
+      const book = await this.findOne(item.book.id);
+
+      book.quantity += item.quantity; // Kembalikan kuantitas buku
+      await this.em.persistAndFlush(book); // Simpan perubahan
     }
   }
 }
