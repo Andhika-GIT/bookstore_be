@@ -15,10 +15,13 @@ export class Order {
   id!: number;
 
   @Property()
-  transaction_id!: string;
+  order_id!: string;
 
   @Property()
   total_price!: number;
+
+  @Property()
+  status!: string;
 
   @OneToMany(() => OrderItem, (item) => item.order, { orphanRemoval: true })
   items = new Collection<OrderItem>(this);

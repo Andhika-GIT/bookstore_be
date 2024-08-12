@@ -43,9 +43,18 @@ export class TransactionController {
   }
 
   @Post('callback')
-  handlePaymentCallback(@Body() callbackData: MidtransCallbackDto) {
-    this.transactionService.updateTransactionStatus(callbackData);
+  async handlePaymentCallback(
+    @Body() callbackData: MidtransCallbackDto,
+    @Res() res: Response,
+  ) {
+    const transactionResponse =
+      await this.transactionService.updateTransactionStatus(callbackData);
 
-    return { status: 'success' }; // Kirim respons yang sesuai
+    sendResponse(
+      res,
+      200,
+      'sucessfully create transaction',
+      transactionResponse,
+    );
   }
 }

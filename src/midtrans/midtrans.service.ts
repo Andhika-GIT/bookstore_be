@@ -1,5 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
+import * as crypto from 'crypto';
 
 import * as Midtrans from 'midtrans-client';
 import { CreateTransactionRequestDto } from './dto/create-transaction-request';
@@ -15,12 +16,33 @@ export class MidtransService {
     });
   }
 
-  async createTransactionToken(transactionData: CreateTransactionRequestDto) {
+  private generateOrderId = (): string => {
+    const uuid = uuidv4().split('-')[0];
+    const now = new Date();
+    const year = now.getFullYear().toString().slice(-2);
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const milliseconds = now.getMilliseconds();
+
+    return `ORDER-${uuid}-${day}-${month}-${year}-${hours}${minutes}${seconds}-${milliseconds}`;
+  };
+
+  async createTransactionToken(
+    transactionData: CreateTransactionRequestDto,
+  ): Promise<{
+    transactionToken: string;
+    orderId: string;
+  }> {
     const { total_price, user, items } = transactionData;
+
+    const orderId = this.generateOrderId();
 
     const parameter = {
       transaction_details: {
-        order_id: `ORDER-${uuidv4()}`,
+        order_id: orderId,
         gross_amount: total_price,
       },
       item_details: items.map((item) => ({
@@ -40,14 +62,15 @@ export class MidtransService {
         unfinish: `${process.env.PUBLIC_FRONTEND_URL}`,
         error: `${process.env.PUBLIC_FRONTEND_URL}`,
         cancel: `${process.env.PUBLIC_FRONTEND_URL}`,
-        // Anda bisa menambahkan URL callback lain sesuai kebutuhan
       },
     };
 
     try {
       const transaction = await this.snap.createTransaction(parameter);
+      console.log(transaction);
       return {
         transactionToken: transaction.token,
+        orderId: orderId,
       };
     } catch (error) {
       throw new BadRequestException(
