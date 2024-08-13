@@ -8,6 +8,7 @@ import {
   Entity,
 } from '@mikro-orm/core';
 import { OrderItem } from './order_item';
+import { IsOptional, IsString } from 'class-validator';
 
 @Entity()
 export class Order {
@@ -22,6 +23,19 @@ export class Order {
 
   @Property()
   status!: string;
+
+  @Property()
+  payment_type!: string;
+
+  @Property({
+    nullable: true,
+  })
+  va_number?: string;
+
+  @Property({
+    nullable: true,
+  })
+  bank?: string;
 
   @OneToMany(() => OrderItem, (item) => item.order, { orphanRemoval: true })
   items = new Collection<OrderItem>(this);

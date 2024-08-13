@@ -408,6 +408,33 @@
           "nullable": false,
           "mappedType": "string"
         },
+        "payment_type": {
+          "name": "payment_type",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "va_number": {
+          "name": "va_number",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "bank": {
+          "name": "bank",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
         "user": {
           "name": "user",
           "type": "int",

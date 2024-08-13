@@ -31,6 +31,8 @@ export class OrderService {
       order_id: order.order_id,
       total_price: order.total_price,
       status: order.status,
+      payment_type: order?.payment_type,
+      va_number: order?.va_number,
       items: items,
     };
   }
@@ -42,6 +44,9 @@ export class OrderService {
       total_price: data.total_price,
       status: data.status,
       user: data.user,
+      payment_type: data.payment_type,
+      va_number: data?.va_number,
+      bank: data?.bank,
     });
 
     // create order items

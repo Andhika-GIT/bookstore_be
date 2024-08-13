@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsArray } from 'class-validator';
+import { IsOptional, IsString, IsArray, ValidateIf } from 'class-validator';
 
 export class MidtransCallbackDto {
   @IsOptional()
@@ -51,4 +51,40 @@ export class MidtransCallbackDto {
   @IsOptional()
   @IsString()
   expiry_time?: string;
+
+  // credit card transaction
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  masked_card?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  eci?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  channel_response_message?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  channel_response_code?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  card_type?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  bank?: string;
+
+  @ValidateIf((o) => o.payment_type === 'credit_card')
+  @IsOptional()
+  @IsString()
+  approval_code?: string;
 }

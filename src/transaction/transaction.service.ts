@@ -79,6 +79,9 @@ export class TransactionService {
       status: 'PENDING',
       user: userData,
       items: clientTransactionRequest.items,
+      payment_type: 'none',
+      va_number: '',
+      bank: '',
     });
 
     // reduce book quantity
@@ -107,6 +110,10 @@ export class TransactionService {
     const order = await this.orderService.findOrderByOrderId(
       callbackData.order_id,
     );
+
+    (order.payment_type = callbackData.payment_type),
+      (order.bank = callbackData?.va_numbers[0]?.bank),
+      (order.va_number = callbackData?.va_numbers[0]?.va_number);
 
     switch (callbackData.transaction_status) {
       case 'capture':
