@@ -4,24 +4,20 @@ import { ClientTransactionRequestDto } from './dto/client_transaction_request';
 import { User } from '@/user/entities/user.entity';
 import * as crypto from 'crypto';
 import { MidtransCallbackDto } from './dto/midtrans_callback';
-import { InjectRepository } from '@mikro-orm/nestjs';
+
 import { EntityManager, EntityRepository } from '@mikro-orm/core';
-import { OrderItem } from './entities/order_item';
-import { Order } from './entities/order';
-import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
+
 import { ClientTransactionResponseDto } from './dto/client_transaction_response';
 import { BookService } from '@/book/book.service';
+import { OrderService } from '@/order/order.service';
 
 @Injectable()
 export class TransactionService {
   constructor(
     private readonly midtransService: MidtransService,
+    private readonly orderService: OrderService,
     private readonly bookService: BookService,
     private readonly em: EntityManager,
-    @InjectRepository(Order)
-    private readonly orderRepository: EntityRepository<Order>,
-    @InjectRepository(OrderItem)
-    private readonly orderItemRepository: EntityRepository<OrderItem>,
   ) {}
 
   private verifySignatureKey(
@@ -77,28 +73,16 @@ export class TransactionService {
       );
 
     // create order
-    const order = this.orderRepository.create({
-      order_id: transactionResponse?.orderId,
+    const order = await this.orderService.createOrder({
+      order_id: transactionResponse.orderId,
       total_price: recalculatedTotalPrice,
       status: 'PENDING',
       user: userData,
+      items: clientTransactionRequest.items,
     });
-
-    // create order items
-    const orderItems = clientTransactionRequest?.items?.map((item) => {
-      return this.orderItemRepository.create({
-        order: order,
-        book: item?.book_id,
-        quantity: item?.quantity,
-        price: item?.price,
-      });
-    });
-
-    // insert order items into order
-    order.items.add([...orderItems]);
 
     // reduce book quantity
-    await this.bookService.reduceBookQuantity(orderItems);
+    await this.bookService.reduceBookQuantity(order.items.getItems());
 
     // save to database
     await this.em.persistAndFlush(order);
@@ -120,9 +104,9 @@ export class TransactionService {
       throw new BadRequestException('invalid signature key');
     }
 
-    const order = await handleFindOrFail(this.orderRepository, {
-      order_id: callbackData.order_id,
-    });
+    const order = await this.orderService.findOrderByOrderId(
+      callbackData.order_id,
+    );
 
     switch (callbackData.transaction_status) {
       case 'capture':

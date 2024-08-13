@@ -5,7 +5,7 @@ import { EntityRepository, EntityManager } from '@mikro-orm/core';
 import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 import { CreateBookDto } from './dto/create-book';
 import { CloudinaryService } from '@/cloudinary/cloudinary.service';
-import { OrderItem } from '@/transaction/entities/order_item';
+import { OrderItem } from '@/order/entities/order_item';
 
 @Injectable()
 export class BookService {

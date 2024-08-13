@@ -1,4 +1,4 @@
-import { IsArray, isNumber, IsNumber, ValidateNested } from 'class-validator';
+import { IsArray, IsNumber, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CartItemDto } from './cart-item';
 

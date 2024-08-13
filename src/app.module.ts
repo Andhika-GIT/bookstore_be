@@ -12,6 +12,7 @@ import { GenreService } from './genre/genre.service';
 import { GenreModule } from './genre/genre.module';
 import { MidtransModule } from './midtrans/midtrans.module';
 import { TransactionModule } from './transaction/transaction.module';
+import { OrderModule } from './order/order.module';
 import config from './mikro-orm.config';
 
 @Module({
@@ -29,6 +30,7 @@ import config from './mikro-orm.config';
     GenreModule,
     MidtransModule,
     TransactionModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
