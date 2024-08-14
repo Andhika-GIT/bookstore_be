@@ -15,6 +15,9 @@ class BookOrderItem {
   book_price!: number;
 
   @IsString()
+  book_name!: string;
+
+  @IsString()
   img_url!: string;
 
   @IsNumber()

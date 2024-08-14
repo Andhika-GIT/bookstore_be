@@ -22,6 +22,7 @@ export class OrderService {
       return {
         book_id: item.book.id,
         book_price: item.book.price,
+        book_name: item.book.title,
         img_url: item.book.img_url,
         order_quantity: item.quantity,
       };
