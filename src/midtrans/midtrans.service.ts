@@ -58,10 +58,9 @@ export class MidtransService {
       },
       enabled_payments: ['bca_va', 'bni_va', 'credit_card'],
       callbacks: {
-        finish: `${process.env.PUBLIC_FRONTEND_URL}`,
-        unfinish: `${process.env.PUBLIC_FRONTEND_URL}`,
-        error: `${process.env.PUBLIC_FRONTEND_URL}`,
-        cancel: `${process.env.PUBLIC_FRONTEND_URL}`,
+        finish: `${process.env.PUBLIC_FRONTEND_URL}/orders/${orderId}`,
+        unfinish: `${process.env.PUBLIC_FRONTEND_URL}/orders/${orderId}`,
+        error: `${process.env.PUBLIC_FRONTEND_URL}/orders`,
       },
     };
 

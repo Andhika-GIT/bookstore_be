@@ -7,6 +7,7 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityManager, EntityRepository } from '@mikro-orm/core';
 import { CreateCartDto, CartResponseDto } from './dto';
 import { Cart } from './entities/cart.entity';
+import { User } from '@/user/entities/user.entity';
 import { CartItem } from './entities/cart_item.entity';
 import { BookService } from '@/book/book.service';
 import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
@@ -210,5 +211,14 @@ export class CartService {
       cart.items.remove(cartItem);
       await em.persistAndFlush(cart);
     });
+  }
+
+  async clearCart(user: User) {
+    const cart = await handleFindOrFail(this.cartRepository, { user: user.id });
+
+    cart.items.removeAll();
+    await this.em.persistAndFlush(cart);
+
+    await this.em.removeAndFlush(cart);
   }
 }

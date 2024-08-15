@@ -4,9 +4,10 @@ import { TransactionController } from './transaction.controller';
 import { MidtransModule } from '@/midtrans/midtrans.module';
 import { BookModule } from '@/book/book.module';
 import { OrderModule } from '@/order/order.module';
+import { CartModule } from '@/cart/cart.module';
 
 @Module({
-  imports: [MidtransModule, OrderModule, BookModule],
+  imports: [MidtransModule, OrderModule, BookModule, CartModule],
   providers: [TransactionService],
   controllers: [TransactionController],
   exports: [TransactionService],

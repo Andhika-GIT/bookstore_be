@@ -10,6 +10,7 @@ import { EntityManager, EntityRepository } from '@mikro-orm/core';
 import { ClientTransactionResponseDto } from './dto/client_transaction_response';
 import { BookService } from '@/book/book.service';
 import { OrderService } from '@/order/order.service';
+import { CartService } from '@/cart/cart.service';
 
 @Injectable()
 export class TransactionService {
@@ -17,6 +18,7 @@ export class TransactionService {
     private readonly midtransService: MidtransService,
     private readonly orderService: OrderService,
     private readonly bookService: BookService,
+    private readonly cartService: CartService,
     private readonly em: EntityManager,
   ) {}
 
@@ -115,6 +117,9 @@ export class TransactionService {
       (order.bank = callbackData?.va_numbers[0]?.bank),
       (order.va_number = callbackData?.va_numbers[0]?.va_number);
 
+    // clear carts
+    await this.cartService.clearCart(order.user);
+
     switch (callbackData.transaction_status) {
       case 'capture':
         if (callbackData.fraud_status === 'accept') {
@@ -134,6 +139,7 @@ export class TransactionService {
         order.status = 'CANCELLED';
         // restore book quantity
         await this.bookService.restoreBookQuantity(order.items.getItems());
+
         break;
 
       case 'pending':
