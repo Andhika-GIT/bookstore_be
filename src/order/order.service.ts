@@ -6,6 +6,8 @@ import { OrderItem } from './entities/order_item';
 import { CreateOrderDto } from './dto/create-order';
 import { handleFindOrFail } from '@/common/utils/handleFindOrFail';
 import { GetOrderResponseDto } from './dto/get-order-response';
+import { User } from '@/user/entities/user.entity';
+import { UserOrderHistoryResponseDto } from './dto/user-order-history-response';
 
 @Injectable()
 export class OrderService {
@@ -76,5 +78,21 @@ export class OrderService {
     );
 
     return order;
+  }
+
+  async getAllOrderByUserId(user: User): Promise<UserOrderHistoryResponseDto> {
+    const order = await handleFindOrFail(
+      this.orderRepository,
+      {
+        user: user.id,
+      },
+      ['items'] as never[],
+    );
+
+    return {
+      order_id: order.order_id,
+      order_status: order.status,
+      total_items: order.items.getItems().length,
+    };
   }
 }
