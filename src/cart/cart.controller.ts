@@ -95,12 +95,19 @@ export class CartController {
   ) {
     const cartItem = await this.cartService.findCartItemsById(cartItemId);
 
-
     try {
       await this.cartService.increaseCartItemQuantity(cartItem, quantity);
-      sendResponse(res, HttpStatus.OK, 'Cart item quantity increased successfully');
+      sendResponse(
+        res,
+        HttpStatus.OK,
+        'Cart item quantity increased successfully',
+      );
     } catch (error) {
-      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+      return sendResponse(
+        res,
+        error?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+        error.message,
+      );
     }
   }
 
@@ -111,15 +118,21 @@ export class CartController {
   ) {
     const cartItem = await this.cartService.findCartItemsById(cartItemId);
 
-
     try {
       await this.cartService.decreaseCartItemQuantity(cartItem);
-      sendResponse(res, HttpStatus.OK, 'Cart item quantity decreased successfully');
+      sendResponse(
+        res,
+        HttpStatus.OK,
+        'Cart item quantity decreased successfully',
+      );
     } catch (error) {
-      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+      return sendResponse(
+        res,
+        error?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+        error.message,
+      );
     }
   }
-  
 
   @Delete(':cartItemId')
   async deleteCartItem(
@@ -132,7 +145,11 @@ export class CartController {
       await this.cartService.deleteCartItem(cartItem);
       sendResponse(res, HttpStatus.OK, 'Cart item deleted successfully');
     } catch (error) {
-      return sendResponse(res, error?.status || HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+      return sendResponse(
+        res,
+        error?.status || HttpStatus.INTERNAL_SERVER_ERROR,
+        error.message,
+      );
     }
   }
 }

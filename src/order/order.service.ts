@@ -80,19 +80,52 @@ export class OrderService {
     return order;
   }
 
-  async getAllOrderByUserId(user: User): Promise<UserOrderHistoryResponseDto> {
-    const order = await handleFindOrFail(
-      this.orderRepository,
+  async getAllOrderByUserId(
+    user: User,
+    page: number,
+  ): Promise<UserOrderHistoryResponseDto> {
+    const pageSize = 5; // Fixed page size
+    const offset = (page - 1) * pageSize;
+
+    // Find orders with pagination
+    const orders = await this.orderRepository.find(
       {
         user: user.id,
       },
-      ['items'] as never[],
+      {
+        limit: pageSize,
+        offset: offset,
+        orderBy: { order_id: 'ASC' },
+        populate: ['items', 'items.book'],
+      },
     );
 
+    // Find the total number of orders for pagination
+    const totalOrders = await this.orderRepository.count({
+      user: user.id,
+    });
+
+    // Determine if there is a next page
+    const totalPage = Math.ceil(totalOrders / pageSize);
+    const nextPage = page < totalPage ? page + 1 : null;
+
+    // Map orders to UserOrderHistoryResponseDto
+    const orderResponses = orders.map((order) => {
+      const items = order.items.getItems();
+      const firstItem = items.length > 0 ? items[0].book : null;
+
+      return {
+        order_id: order.order_id,
+        order_status: order.status,
+        total_items: items.length,
+        first_item: firstItem,
+      };
+    });
+
     return {
-      order_id: order.order_id,
-      order_status: order.status,
-      total_items: order.items.getItems().length,
+      total_page: totalPage,
+      next_page: nextPage,
+      items: orderResponses,
     };
   }
 }

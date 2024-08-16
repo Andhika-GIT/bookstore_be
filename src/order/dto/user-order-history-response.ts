@@ -1,6 +1,7 @@
-import { IsString, IsNumber } from 'class-validator';
+import { Book } from '@/book/entities/book.entity';
+import { IsString, IsNumber, IsArray, IsObject } from 'class-validator';
 
-export class UserOrderHistoryResponseDto {
+class OrderHistoryItems {
   @IsString()
   order_id: string;
 
@@ -9,4 +10,15 @@ export class UserOrderHistoryResponseDto {
 
   @IsString()
   order_status: string;
+
+  @IsObject()
+  first_item: Book;
+}
+
+export class UserOrderHistoryResponseDto {
+  total_page: number;
+
+  next_page: number;
+
+  items: OrderHistoryItems[];
 }

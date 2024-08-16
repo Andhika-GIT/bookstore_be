@@ -66,7 +66,6 @@ export class MidtransService {
 
     try {
       const transaction = await this.snap.createTransaction(parameter);
-      console.log(transaction);
       return {
         transactionToken: transaction.token,
         orderId: orderId,

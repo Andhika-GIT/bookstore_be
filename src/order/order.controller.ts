@@ -3,6 +3,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Query,
   Request,
   Res,
   UseGuards,
@@ -13,10 +14,21 @@ import { sendResponse } from '@/common/utils/response.util';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 import { User } from '@/user/entities/user.entity';
 
-@UseGuards(JwtGuard)
 @Controller('order')
+@UseGuards(JwtGuard)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
+
+  @Get('history/user')
+  async getAllOrderByUserId(
+    @Query('page') page: number,
+    @Res() res: Response,
+    @Request() req: { user: User },
+  ) {
+    const order = await this.orderService.getAllOrderByUserId(req.user, page);
+
+    sendResponse(res, 200, 'Successfully get user order history', order);
+  }
 
   @Get(':orderId')
   async findOrderByOrderId(
@@ -28,16 +40,5 @@ export class OrderController {
     const formattedOrder = this.orderService.formatOrder(order);
 
     sendResponse(res, 200, 'Successfully get order', formattedOrder);
-  }
-
-  @Get('history/user')
-  async getAllOrderByUserId(
-    @Res() res: Response,
-    @Request() req: { user: User },
-  ) {
-    console.log(req.user);
-    const order = await this.orderService.getAllOrderByUserId(req.user);
-
-    sendResponse(res, 200, 'Successfully get user order history', order);
   }
 }
