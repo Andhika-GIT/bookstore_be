@@ -6,21 +6,38 @@ import { Genre } from './entities/genre.entity';
 
 @Injectable()
 export class GenreService {
-    constructor(
-        @InjectRepository(BookGenre)
-        private readonly bookGenreRepository: EntityRepository<BookGenre>
-    ){}
-   
-    async findGenresByBookId(bookId: number): Promise<Genre[]> {
-        const bookGenres = await this.bookGenreRepository.find(
-            { book: { id: bookId } },
-            { populate: ['genre'] } 
-        );
+  constructor(
+    @InjectRepository(BookGenre)
+    private readonly bookGenreRepository: EntityRepository<BookGenre>,
+  ) {}
 
-        if (bookGenres?.length === 0) {
-            return []; 
-        }
+  async findGenresByBookId(bookId: number): Promise<Genre[]> {
+    const bookGenres = await this.bookGenreRepository.find(
+      { book: { id: bookId } },
+      { populate: ['genre'] },
+    );
 
-        return bookGenres?.map(bg => bg.genre) || [];
+    if (bookGenres?.length === 0) {
+      return [];
     }
+
+    return bookGenres?.map((bg) => bg.genre) || [];
+  }
+
+  async findAllBookByGenreId(genreId: string): Promise<number[]> {
+    const genreIds = genreId
+      ? genreId.split(',').map((id) => parseInt(id.trim(), 10))
+      : [];
+
+    if (genreIds.length === 0) {
+      throw new Error('Genre IDs are required');
+    }
+
+    const bookGenres = await this.bookGenreRepository.find(
+      { genre: { id: { $in: genreIds } } },
+      { populate: ['book'] },
+    );
+
+    return [...new Set(bookGenres.map((bg) => bg.book.id))];
+  }
 }

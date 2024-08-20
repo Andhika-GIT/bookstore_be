@@ -8,7 +8,6 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CartModule } from './cart/cart.module';
-import { GenreService } from './genre/genre.service';
 import { GenreModule } from './genre/genre.module';
 import { MidtransModule } from './midtrans/midtrans.module';
 import { TransactionModule } from './transaction/transaction.module';

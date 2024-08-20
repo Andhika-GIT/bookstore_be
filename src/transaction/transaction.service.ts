@@ -105,6 +105,7 @@ export class TransactionService {
       callbackData.gross_amount,
     );
 
+    console.log(callbackData);
     if (!isValidSignatureKey) {
       throw new BadRequestException('invalid signature key');
     }
@@ -117,6 +118,7 @@ export class TransactionService {
       (order.bank = callbackData?.va_numbers[0]?.bank),
       (order.va_number = callbackData?.va_numbers[0]?.va_number);
 
+    console.log(order);
     // clear carts
     await this.cartService.clearCart(order.user);
 
@@ -149,6 +151,8 @@ export class TransactionService {
       default:
         throw new BadRequestException('Unknown transaction status');
     }
+
+    console.log(order);
 
     await this.em.persistAndFlush(order);
 

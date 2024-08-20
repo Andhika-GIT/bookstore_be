@@ -17,23 +17,53 @@ import { CreateBookDto } from './dto/create-book';
 import { sendResponse } from '@/common/utils/response.util';
 import { UseFileInterceptor } from '@/interceptors/file.interceptor';
 import { GenreService } from '@/genre/genre.service';
+import { Book } from './entities/book.entity';
 
 @Controller('book')
 export class BookController {
   constructor(
     private readonly bookService: BookService,
-    private readonly genreService: GenreService
+    private readonly genreService: GenreService,
   ) {}
 
-  @Get()
-  async findAll(@Query('page') page: string, @Res() res: Response) {
-    const pageNumber = parseInt(page, 10) || 1;
+  @Get('search')
+  async searchBook(
+    @Query('query') query: string,
+    @Query('filter') filter: string,
+    @Query('genre') genre: string,
+    @Query('page') page: number,
+    @Res() res: Response,
+  ) {
+    const pageSize = 8;
+    const pageNumber = page || 1;
 
     try {
-      const { books, nextPage } = await this.bookService.findAll(pageNumber);
+      let books: Book[];
+      let nextPage: number;
 
-      sendResponse(res, 200, 'Sucessfully retrieved all books', {
-        totalData: books?.length,
+      if (genre) {
+        // Get all book IDs based on genre IDs
+        const bookIds = await this.genreService.findAllBookByGenreId(genre);
+
+        // Get all books data based on book IDs
+        ({ books, nextPage } = await this.bookService.findAllByIds(
+          bookIds,
+          pageSize,
+          pageNumber,
+          filter,
+          query,
+        ));
+      } else {
+        // Get all books data without filtering by genre
+        ({ books, nextPage } = await this.bookService.findAll(
+          pageNumber,
+          filter,
+          query,
+        ));
+      }
+
+      sendResponse(res, 200, 'Successfully retrieved books', {
+        totalData: books.length,
         nextPage: nextPage,
         books: books,
       });
@@ -44,13 +74,14 @@ export class BookController {
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-    const genres = await this.genreService.findGenresByBookId(id)
-    const genresNameString = genres?.map(genre => genre?.name)?.join(', ') || '';
+    const genres = await this.genreService.findGenresByBookId(id);
+    const genresNameString =
+      genres?.map((genre) => genre?.name)?.join(', ') || '';
     const book = await this.bookService.findOne(id);
 
     sendResponse(res, 200, 'Succesfully retrieve book', {
       ...book,
-      genres: genresNameString
+      genres: genresNameString,
     });
   }
 
@@ -70,6 +101,23 @@ export class BookController {
       await this.bookService.createBook(newBookData, file);
 
       sendResponse(res, 201, 'Successfully created book');
+    } catch (e) {
+      sendResponse(res, 500, e.message);
+    }
+  }
+
+  @Get()
+  async findAll(@Query('page') page: string, @Res() res: Response) {
+    const pageNumber = parseInt(page, 10) || 1;
+
+    try {
+      const { books, nextPage } = await this.bookService.findAll(pageNumber);
+
+      sendResponse(res, 200, 'Sucessfully retrieved all books', {
+        totalData: books?.length,
+        nextPage: nextPage,
+        books: books,
+      });
     } catch (e) {
       sendResponse(res, 500, e.message);
     }

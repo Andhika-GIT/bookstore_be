@@ -18,19 +18,42 @@ export class BookService {
 
   async findAll(
     page: number = 1,
+    filter?: string,
+    query?: string,
   ): Promise<{ books: Book[]; nextPage: number }> {
     const pageSize = 8;
     const offset = (page - 1) * pageSize;
 
-    const books = await this.bookRepository.findAll({
-      limit: pageSize,
-      offset: offset,
-    });
+    // Handle query if provided
+    let books: Book[];
+    let totalBooks: number;
+    let orderBy = {};
 
-    const totalBooks = await this.bookRepository.count();
+    // order by condition based on filter param
+    if (filter === 'latest') {
+      orderBy = { created_at: 'DESC' };
+    } else if (filter === 'popular') {
+      orderBy = { rating: 'DESC' };
+    }
+
+    if (query) {
+      books = await this.bookRepository.find(
+        { title: { $like: `%${query}%` } },
+        { limit: pageSize, offset: offset, orderBy },
+      );
+      totalBooks = await this.bookRepository.count({
+        title: { $like: `%${query}%` },
+      });
+    } else {
+      books = await this.bookRepository.findAll({
+        limit: pageSize,
+        offset: offset,
+        orderBy,
+      });
+      totalBooks = await this.bookRepository.count();
+    }
 
     const totalPage = Math.ceil(totalBooks / pageSize);
-
     const nextPage = page < totalPage ? page + 1 : null;
 
     return { books, nextPage };
@@ -38,6 +61,57 @@ export class BookService {
 
   async findOne(id: number): Promise<Book> {
     return handleFindOrFail(this.bookRepository, { id });
+  }
+
+  async findAllByIds(
+    ids: number[],
+    pageSize: number,
+    page: number,
+    filter?: string,
+    query?: string,
+  ): Promise<{
+    books: Book[];
+    nextPage: number;
+  }> {
+    const offset = (page - 1) * pageSize;
+
+    let books: Book[];
+    let totalBooks: number;
+    let orderBy = {};
+
+    // order by condition based on filter param
+    if (filter === 'latest') {
+      orderBy = { created_at: 'DESC' };
+    } else if (filter === 'popular') {
+      orderBy = { rating: 'DESC' };
+    }
+
+    if (query) {
+      // If query is provided, perform search with query parameter
+      books = await this.bookRepository.find(
+        {
+          id: { $in: ids },
+          title: { $like: `%${query}%` },
+        },
+        { limit: pageSize, offset: offset, orderBy },
+      );
+      totalBooks = await this.bookRepository.count({
+        id: { $in: ids },
+        title: { $like: `%${query}%` },
+      });
+    } else {
+      // If no query is provided, return books based on IDs only
+      books = await this.bookRepository.find(
+        { id: { $in: ids } },
+        { limit: pageSize, offset: offset, orderBy },
+      );
+      totalBooks = ids.length;
+    }
+
+    const totalPage = Math.ceil(totalBooks / pageSize);
+    const nextPage = page < totalPage ? page + 1 : null;
+
+    return { books, nextPage };
   }
 
   async getBookQuantity(id: number): Promise<number> {
