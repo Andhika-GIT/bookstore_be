@@ -28,11 +28,11 @@ export class BookController {
 
   @Get('search')
   async searchBook(
-    @Query('query') query: string,
-    @Query('filter') filter: string,
-    @Query('genre') genre: string,
-    @Query('page') page: number,
     @Res() res: Response,
+    @Query('query') query?: string,
+    @Query('filter') filter?: string,
+    @Query('genre') genre?: string,
+    @Query('page') page?: number,
   ) {
     const pageSize = 8;
     const pageNumber = page || 1;

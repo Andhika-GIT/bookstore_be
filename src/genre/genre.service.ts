@@ -3,13 +3,25 @@ import { Injectable } from '@nestjs/common';
 import { BookGenre } from './entities/book_genre.entity';
 import { EntityRepository } from '@mikro-orm/core';
 import { Genre } from './entities/genre.entity';
+import { GenreItem } from './dto/get-all-genre-response';
 
 @Injectable()
 export class GenreService {
   constructor(
     @InjectRepository(BookGenre)
     private readonly bookGenreRepository: EntityRepository<BookGenre>,
+    @InjectRepository(Genre)
+    private readonly genreRepository: EntityRepository<Genre>,
   ) {}
+
+  async getAllGenre(): Promise<GenreItem[]> {
+    const genres = await this.genreRepository.findAll();
+
+    return genres?.map((item) => ({
+      label: item?.name,
+      value: item?.id,
+    }));
+  }
 
   async findGenresByBookId(bookId: number): Promise<Genre[]> {
     const bookGenres = await this.bookGenreRepository.find(
