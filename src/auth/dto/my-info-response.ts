@@ -1,9 +1,12 @@
 // src/user/dto/user-response.dto.ts
 import { Expose } from 'class-transformer';
 
-export class UserResponseDto {
+export class MyInfoResponseDto {
   @Expose()
   username: string;
+
+  @Expose()
+  fullname: string;
 
   @Expose()
   imageURL?: string;

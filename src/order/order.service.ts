@@ -84,7 +84,7 @@ export class OrderService {
     user: User,
     page: number,
   ): Promise<UserOrderHistoryResponseDto> {
-    const pageSize = 5; // Fixed page size
+    const pageSize = 3; // Fixed page size
     const offset = (page - 1) * pageSize;
 
     // Find orders with pagination

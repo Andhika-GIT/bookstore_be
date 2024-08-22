@@ -18,7 +18,7 @@ import { Response } from 'express';
 import { User } from '@/user/entities/user.entity';
 import { CreateUserDto } from './dto/create-user';
 import { UseSerializeInterceptor, UseFileInterceptor } from '@/interceptors/';
-import { UserResponseDto } from './dto/userResponse-user';
+import { MyInfoResponseDto } from './dto/my-info-response';
 import { setCookie } from '@/common/utils/cookie.util';
 import { sendResponse } from '@/common/utils/response.util';
 
@@ -35,6 +35,15 @@ export class AuthController {
     setCookie(res, 'jwt', this.jwtService.sign({ email: req?.user?.email }));
 
     return sendResponse(res, 200, 'sucessfully sign in');
+  }
+
+  @Post('signOut')
+  @UseGuards(JwtGuard)
+  signOut(@Res() res: Response) {
+    // Clear the JWT cookie
+    setCookie(res, 'jwt', '', { maxAge: -1 }); // Setting maxAge to -1 removes the cookie
+
+    return sendResponse(res, 200, 'Successfully signed out');
   }
 
   @UseFileInterceptor('img_url') // Custom decorator for file upload with correct key
@@ -56,7 +65,7 @@ export class AuthController {
     }
   }
 
-  @UseSerializeInterceptor(UserResponseDto)
+  @UseSerializeInterceptor(MyInfoResponseDto)
   @Get('my-info')
   @UseGuards(JwtGuard)
   getMyInfo(@Request() req: { user: User }) {
