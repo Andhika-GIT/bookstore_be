@@ -11,7 +11,7 @@ export const setCookie = (
   const defaultOptions = {
     httpOnly: true,
     secure: false,
-    sameSite: 'none',
+    sameSite: 'lax',
     maxAge: 5 * 24 * 60 * 60 * 1000,
     ...options,
   };
