@@ -42,6 +42,10 @@ export class GetOrderResponseDto {
   @IsString()
   va_number: string;
 
+  @IsOptional()
+  @IsString()
+  bank: string;
+
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => BookOrderItem)

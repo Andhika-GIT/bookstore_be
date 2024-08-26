@@ -36,6 +36,7 @@ export class OrderService {
       status: order.status,
       payment_type: order?.payment_type,
       va_number: order?.va_number,
+      bank: order?.bank,
       items: items,
     };
   }
@@ -74,7 +75,7 @@ export class OrderService {
       {
         order_id: order_id,
       },
-      ['items.book'] as never[],
+      ['items.book', 'user'] as never[],
     );
 
     return order;

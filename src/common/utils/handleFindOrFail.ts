@@ -15,6 +15,7 @@ export async function handleFindOrFail<T extends object>(
     });
     return entity;
   } catch (error) {
+    console.log(error);
     if (error instanceof NotFoundException) {
       throw error;
     } else {

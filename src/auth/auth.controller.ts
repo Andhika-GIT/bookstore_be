@@ -68,7 +68,12 @@ export class AuthController {
   @UseSerializeInterceptor(MyInfoResponseDto)
   @Get('my-info')
   @UseGuards(JwtGuard)
-  getMyInfo(@Request() req: { user: User }) {
-    return req.user;
+  getMyInfo(@Request() req: { user: User }, @Res() res: Response) {
+    sendResponse(res, 200, 'Successfully get profile data', {
+      username: req.user.username,
+      email: req.user.email,
+      address: req.user.address,
+      phone_number: req.user.phone_number,
+    });
   }
 }
