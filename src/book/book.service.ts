@@ -13,7 +13,7 @@ export class BookService {
     @InjectRepository(Book)
     private readonly bookRepository: EntityRepository<Book>,
     private readonly cloudinaryService: CloudinaryService,
-    private readonly em: EntityManager, // Inject the EntityManager
+    private readonly em: EntityManager,
   ) {}
 
   async findAll(
@@ -38,11 +38,11 @@ export class BookService {
 
     if (query) {
       books = await this.bookRepository.find(
-        { title: { $like: `%${query}%` } },
+        { title: { $ilike: `%${query}%` } },
         { limit: pageSize, offset: offset, orderBy },
       );
       totalBooks = await this.bookRepository.count({
-        title: { $like: `%${query}%` },
+        title: { $ilike: `%${query}%` },
       });
     } else {
       books = await this.bookRepository.findAll({
@@ -91,13 +91,13 @@ export class BookService {
       books = await this.bookRepository.find(
         {
           id: { $in: ids },
-          title: { $like: `%${query}%` },
+          title: { $ilike: `%${query}%` },
         },
         { limit: pageSize, offset: offset, orderBy },
       );
       totalBooks = await this.bookRepository.count({
         id: { $in: ids },
-        title: { $like: `%${query}%` },
+        title: { $ilike: `%${query}%` },
       });
     } else {
       // If no query is provided, return books based on IDs only
@@ -166,8 +166,8 @@ export class BookService {
     for (const item of orderItems) {
       const book = await this.findOne(item.book.id);
 
-      book.quantity += item.quantity; // Kembalikan kuantitas buku
-      await this.em.persistAndFlush(book); // Simpan perubahan
+      book.quantity += item.quantity;
+      await this.em.persistAndFlush(book);
     }
   }
 }

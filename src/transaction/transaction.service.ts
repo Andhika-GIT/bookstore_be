@@ -117,10 +117,7 @@ export class TransactionService {
     order.bank = callbackData?.va_numbers[0]?.bank;
     order.va_number = callbackData?.va_numbers[0]?.va_number;
 
-    // clear carts if status is pending
-    if (callbackData?.transaction_status === 'pending') {
-      await this.cartService.clearCart(order.user);
-    }
+    await this.cartService.clearCart(order.user);
 
     switch (callbackData.transaction_status) {
       case 'capture':

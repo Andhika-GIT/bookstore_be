@@ -26,8 +26,8 @@ export class BookController {
     private readonly genreService: GenreService,
   ) {}
 
-  @Get('search')
-  async searchBook(
+  @Get()
+  async findAll(
     @Res() res: Response,
     @Query('query') query?: string,
     @Query('filter') filter?: string,
@@ -72,6 +72,31 @@ export class BookController {
     }
   }
 
+  @Get('related/:id')
+  async findRelated(
+    @Param('id', ParseIntPipe) id: number,
+    @Res() res: Response,
+  ) {
+    await this.bookService.findOne(id);
+
+    const genres = await this.genreService.findGenresByBookId(id);
+
+    const genreIds =
+      genres
+        ?.map((genre) => genre?.id)
+        ?.join(',')
+        ?.toString() || '';
+
+    const bookIds = await this.genreService.findAllBookByGenreId(genreIds, id);
+
+    const { books } = await this.bookService.findAllByIds(bookIds, 3, 1);
+
+    sendResponse(res, 200, 'success', {
+      genre: genreIds,
+      books: books,
+    });
+  }
+
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
     const genres = await this.genreService.findGenresByBookId(id);
@@ -101,23 +126,6 @@ export class BookController {
       await this.bookService.createBook(newBookData, file);
 
       sendResponse(res, 201, 'Successfully created book');
-    } catch (e) {
-      sendResponse(res, 500, e.message);
-    }
-  }
-
-  @Get()
-  async findAll(@Query('page') page: string, @Res() res: Response) {
-    const pageNumber = parseInt(page, 10) || 1;
-
-    try {
-      const { books, nextPage } = await this.bookService.findAll(pageNumber);
-
-      sendResponse(res, 200, 'Sucessfully retrieved all books', {
-        totalData: books?.length,
-        nextPage: nextPage,
-        books: books,
-      });
     } catch (e) {
       sendResponse(res, 500, e.message);
     }

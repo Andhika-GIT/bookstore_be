@@ -214,11 +214,20 @@ export class CartService {
   }
 
   async clearCart(user: User) {
-    const cart = await handleFindOrFail(this.cartRepository, { user: user.id });
+    const cart = await this.cartRepository.findOne(
+      {
+        user: user.id,
+      },
+      {
+        populate: ['items'],
+      },
+    );
 
-    cart.items.removeAll();
-    await this.em.persistAndFlush(cart);
+    if (cart) {
+      cart.items.removeAll();
+      await this.em.persistAndFlush(cart);
 
-    await this.em.removeAndFlush(cart);
+      await this.em.removeAndFlush(cart);
+    }
   }
 }

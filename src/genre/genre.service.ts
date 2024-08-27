@@ -36,7 +36,10 @@ export class GenreService {
     return bookGenres?.map((bg) => bg.genre) || [];
   }
 
-  async findAllBookByGenreId(genreId: string): Promise<number[]> {
+  async findAllBookByGenreId(
+    genreId: string,
+    excludeBookId?: number,
+  ): Promise<number[]> {
     const genreIds = genreId
       ? genreId.split(',').map((id) => parseInt(id.trim(), 10))
       : [];
@@ -50,6 +53,11 @@ export class GenreService {
       { populate: ['book'] },
     );
 
-    return [...new Set(bookGenres.map((bg) => bg.book.id))];
+    const bookIds = bookGenres.map((bg) => bg.book.id);
+
+    // Exclude the book with the provided book_id if available
+    const filteredBookIds = bookIds.filter((id) => id !== excludeBookId);
+
+    return [...new Set(filteredBookIds)];
   }
 }
